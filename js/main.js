@@ -45,7 +45,7 @@ function seleccionarCantidad() {
         
         respuesta = parseInt(prompt("Ingrese la cantidad de cajas que va a llevar del producto:"));
         
-        seguir_ciclando = Number(respuesta) && respuesta < 1;
+        seguir_ciclando = isNaN(respuesta) || respuesta < 1;
     }
     while (seguir_ciclando);
     
