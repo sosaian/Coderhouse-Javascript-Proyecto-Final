@@ -40,12 +40,12 @@ function seleccionarCantidad() {
         
         if (seguir_ciclando) {
             
-            alert("ERROR\nLa cantidad ingresada debe ser un número entero mayor que cero.\nPor favor, ingrese nuevamente.");
+            alert("ERROR\nLa cantidad ingresada debe ser un número entero mayor que cero.\nPor favor, ingrese nuevamente.\n\nIngrese '0' si quiere seleccionar otro producto");
         }
         
-        respuesta = parseInt(prompt("Ingrese la cantidad de cajas que va a llevar del producto:"));
+        respuesta = parseInt(prompt("Ingrese la cantidad de cajas que va a llevar del producto.\n\nIngrese '0' si quiere seleccionar otro producto."));
         
-        seguir_ciclando = isNaN(respuesta) || respuesta < 1;
+        seguir_ciclando = isNaN(respuesta) || respuesta <= 0;
     }
     while (seguir_ciclando);
     
@@ -94,8 +94,14 @@ function mostrarPrecioFinal(precio) {
 }
 
 function simuladorHavannaCLI() {    
-    let producto = seleccionarProducto();
-    let cantidad = seleccionarCantidad();
+    let producto = 0;
+    let cantidad = 0;
+
+    do {
+        producto = seleccionarProducto();
+        cantidad = seleccionarCantidad();
+    }
+    while(cantidad === 0);
     
     let total = calcularPrecioFinal(producto, cantidad);
     
