@@ -13,7 +13,7 @@ function seleccionarProducto() {
         
         if (seguir_ciclando) {
             
-            alert(`ERROR, por favor ingrese el número de opción entre los disponibles.`);
+            alert(`ERROR: Por favor, ingrese el número correspondiente al producto que desea comprar (1, 2 o 3).`);
         }
         
         //Para este prompt uso backticks (`) considerando que hace más legible el código.
@@ -40,7 +40,7 @@ function seleccionarCantidad() {
         
         if (seguir_ciclando) {
             
-            alert(`ERROR, por favor ingrese una cantidad de unidades mayor a cero.`);
+            alert("ERROR\nLa cantidad ingresada debe ser un número entero mayor que cero.\nPor favor, ingrese nuevamente.");
         }
         
         respuesta = parseInt(prompt("Ingrese la cantidad de cajas que va a llevar del producto:"));
