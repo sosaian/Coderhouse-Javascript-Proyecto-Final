@@ -34,7 +34,7 @@ function seleccionarProducto() {
 function seleccionarCantidad() {
     let seguir_ciclando = false;
     
-    let respuesta = 0;
+    let respuesta = "Cualquier cosa"; //Aprovecho que en JS las variables son de TIPO DINAMICO.
     
     do {
         
@@ -45,7 +45,7 @@ function seleccionarCantidad() {
         
         respuesta = parseInt(prompt("Ingrese la cantidad de cajas que va a llevar del producto.\n\nIngrese '0' si quiere seleccionar otro producto."));
         
-        seguir_ciclando = isNaN(respuesta) || respuesta <= 0;
+        seguir_ciclando = isNaN(respuesta) || respuesta < 0;
     }
     while (seguir_ciclando);
     
