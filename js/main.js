@@ -48,7 +48,7 @@ function seleccionarProducto() {
         \n  3: Galletitas de limón x12 unidades - $9,000
         \nSeleccione el producto a comprar:`) );
         
-        seguir_ciclando = respuesta !== 1 && respuesta !== 2 && respuesta!== 3;
+        seguir_ciclando = !respuesta || respuesta < 1 || respuesta > PRODUCTOS.length;
     }
     while (seguir_ciclando);
     
