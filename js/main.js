@@ -1,5 +1,5 @@
 // Simulador Tienda Havanna CLI
-// Javascript | Coderhouse | PRE-ENTREGA 1 | Ian SOSA
+// Javascript | Coderhouse | PRE-ENTREGA 2 | Ian SOSA
 
 // Este algoritmo representa una versión primitiva del proyecto final: recrear la tienda "Havanna" online.
 // Intencionalmente aplico los conceptos que aprendimos hasta ahora en las clases
