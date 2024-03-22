@@ -5,6 +5,29 @@
 // Intencionalmente aplico los conceptos que aprendimos hasta ahora en las clases
 // (Condicionales; ciclos; funciones) ergo es probable que hayan formas más óptimas de escalar el código.
 
+const PRODUCTOS = [
+    {
+        nombre: "Alfajores 70% Cacao Puro x9 unidades (¡Hoy 25% off!)",
+        precio: 16500.00,
+        descuento: 25 
+        //Descuento expresado en % (al usarse se opera convirtiendo a su expresión decimal)
+    },
+    {
+        nombre: "Havannets de coco 70% Cacao x6 unidades",
+        precio: 6700.00,
+        descuento: 0
+    },
+    {
+        nombre: "Galletitas de limón x12 unidades",
+        precio: 2500.00,
+        descuento: 0
+    }
+]
+
+//IMPUESTOS
+//Valores expresados en % (al usarse se opera convirtiendo a su expresión decimal)
+const IVA = 21;
+
 function seleccionarProducto() {
     let seguir_ciclando = false;
     let respuesta = 0;
@@ -53,34 +76,11 @@ function seleccionarCantidad() {
 }
 
 function calcularPrecioFinal(producto, cantidad) {
-    //PRECIOS
-    const PROD_1_PRECIO = 16500.00;
-    const PROD_2_PRECIO = 6700.00;
-    const PROD_3_PRECIO = 2500.00;
-
-    //DESCUENTOS
-    //Valores expresados en % (al usarse se opera convirtiendo a su expresión decimal)
-    const PROD_1_DESCUENTO = 25;
-    const PROD_2_DESCUENTO = 0;
-    const PROD_3_DESCUENTO = 0;
-    
-    //IMPUESTOS
-    //Valores expresados en % (al usarse se opera convirtiendo a su expresión decimal)
-    const IVA = 21;
-
     let total = 0.0;
+
+    //Se asume que producto y cantidad ya fueron validados antes de invocarse esta función.
     
-    switch (producto) {
-        
-        case 1: total += PROD_1_PRECIO * ((100 - PROD_1_DESCUENTO) / 100);
-        break;
-        
-        case 2: total = PROD_2_PRECIO * ((100 - PROD_2_DESCUENTO) / 100);
-        break;
-        
-        case 3: total = PROD_3_PRECIO * ((100 - PROD_3_DESCUENTO) / 100);
-        break;
-    }
+    total = PRODUCTOS[producto - 1].precio * ((100 - PRODUCTOS[producto - 1].descuento) / 100);
     
     total *= cantidad;          //NOTA: NO contemplo casos del tipo "2da unidad al 50%" en este algoritmo.
     
