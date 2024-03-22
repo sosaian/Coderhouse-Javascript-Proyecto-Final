@@ -2,8 +2,9 @@
 // Javascript | Coderhouse | PRE-ENTREGA 2 | Ian SOSA
 
 // Este algoritmo representa una versión primitiva del proyecto final: recrear la tienda "Havanna" online.
-// Intencionalmente aplico los conceptos que aprendimos hasta ahora en las clases
-// (Condicionales; ciclos; funciones) ergo es probable que hayan formas más óptimas de escalar el código.
+// Intencionalmente aplico los conceptos que aprendimos hasta ahora en las clases...
+// (Condicionales; ciclos; funciones; objetos; arrays; high-order functions)
+// ergo es probable que hayan formas más óptimas de escalar el código.
 
 const PRODUCTOS = [
     {
