@@ -58,16 +58,16 @@ function seleccionarProducto() {
 function seleccionarCantidad() {
     let seguir_ciclando = false;
     
-    let respuesta = "Cualquier cosa"; //Aprovecho que en JS las variables son de TIPO DINAMICO.
+    let respuesta = "Cualquier cosa"; //Aprovecho las variables de TIPO DINAMICO de JS mejorar legibilidad.
     
     do {
         
         if (seguir_ciclando) {
             
-            alert("ERROR\nLa cantidad ingresada debe ser un número entero mayor que cero.\nPor favor, ingrese nuevamente.\n\nIngrese '0' si quiere seleccionar otro producto");
+            alert("ERROR\nLa cantidad ingresada debe ser un número entero mayor que cero.\nPor favor, ingrese nuevamente");
         }
         
-        respuesta = parseInt(prompt("Ingrese la cantidad de cajas que va a llevar del producto.\n\nIngrese '0' si quiere seleccionar otro producto."));
+        respuesta = parseInt(prompt("Ingrese la cantidad de cajas que va a llevar del producto"));
         
         seguir_ciclando = isNaN(respuesta) || respuesta < 0;
     }
@@ -76,14 +76,20 @@ function seleccionarCantidad() {
     return respuesta;
 }
 
-function calcularPrecioFinal(producto, cantidad) {
+function calcularPrecioFinal(carrito) {
     let total = 0.0;
+    let subtotal = 0.0;
 
     //Se asume que producto y cantidad ya fueron validados antes de invocarse esta función.
-    
-    total = PRODUCTOS[producto - 1].precio * ((100 - PRODUCTOS[producto - 1].descuento) / 100);
-    
-    total *= cantidad;          //NOTA: NO contemplo casos del tipo "2da unidad al 50%" en este algoritmo.
+
+    for (producto of carrito)
+    {
+        subtotal = PRODUCTOS[producto.id].precio * ((100 - PRODUCTOS[producto.id].descuento) / 100);
+        
+        subtotal *= producto.cantidad;   //NOTA: NO contemplo casos del tipo "2da unidad al 50%" en este algoritmo.
+
+        total += subtotal;
+    }
     
     total *= 1 + (IVA / 100);   //Agrego impuestos (IVA).
     
@@ -95,16 +101,48 @@ function mostrarPrecioFinal(precio) {
 }
 
 function simuladorHavannaCLI() {    
-    let producto = 0;
+    let producto_id = 0;
     let cantidad = 0;
+    let carrito = [];
+    let indicesSeleccionados = [];
+    let agregar_mas_productos = false;
 
     do {
-        producto = seleccionarProducto();
+        producto_id = seleccionarProducto();
         cantidad = seleccionarCantidad();
+        
+        if (agregar_mas_productos && indicesSeleccionados.includes(producto_id))
+        {
+            carrito[producto_id - 1].cantidad += cantidad;
+        }
+        else
+        {
+            indicesSeleccionados.push(producto_id);
+
+            carrito.push(
+                {
+                    //  Elijo intencionalmente qué propiedades cargar al carrito
+                    //  Para controlar qué información expongo al usuario...
+                    id: producto_id - 1,
+                    cantidad: cantidad
+                }
+            );
+        }
+
+        let mensajeCarrito = "CARRITO:\n";
+
+        for (let producto of carrito)
+        {
+            mensajeCarrito += "x" + producto.cantidad + " " + PRODUCTOS[producto.id].nombre + "\n";
+        }
+
+        mensajeCarrito += "\n¿Quieres agregar más productos?";
+
+        agregar_mas_productos = confirm(mensajeCarrito) ? true : false;
     }
-    while(cantidad === 0);
+    while(agregar_mas_productos);
     
-    let total = calcularPrecioFinal(producto, cantidad);
+    let total = calcularPrecioFinal(carrito);
     
     mostrarPrecioFinal(total);
 }
