@@ -56,9 +56,25 @@ li {
 
 body {
     background-color: #121212;
-    display: grid;
-    place-items: center;
     height: 100vh;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 5fr 1fr;
+    place-items:center;
+}
+
+header, footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+header {
+    border-bottom: 0.5rem solid #f2f2f2;
+}
+
+footer {
+    border-top: 0.5rem solid #f2f2f2;
 }
 
 h1, h2, ul, li {
