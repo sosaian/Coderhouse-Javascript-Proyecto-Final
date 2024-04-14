@@ -7,6 +7,8 @@
 // DOM; Eventos; localStorage; JSON; Sugar Syntax)
 // ergo es probable que hayan formas más óptimas de escalar el código.
 
+//#region CLI
+
 const PRODUCTOS = [
     {
         nombre: "Alfajores 70% Cacao Puro x9 unidades (¡Hoy 25% off!)",
@@ -148,4 +150,26 @@ function simuladorHavannaCLI() {
     mostrarPrecioFinal(total);
 }
 
-simuladorHavannaCLI();
+// simuladorHavannaCLI();
+
+//#region GUI
+
+function cargarListadoProductos()
+{
+    const LISTADO_PRODUCTOS = document.getElementById("listadoProductos");
+    LISTADO_PRODUCTOS.textContent = "";
+
+    for (let producto of PRODUCTOS)
+    {
+        const LI = document.createElement("li");
+        LI.textContent = producto.nombre;
+        LISTADO_PRODUCTOS.appendChild(LI);
+    }
+}
+
+function simuladorHavannaGUI()
+{
+    cargarListadoProductos();
+}
+
+simuladorHavannaGUI();
