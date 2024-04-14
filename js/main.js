@@ -1,9 +1,10 @@
-// Simulador Tienda Havanna CLI
-// Javascript | Coderhouse | PRE-ENTREGA 2 | Ian SOSA
+// Simulador Tienda Havanna - Simple GUI
+// Javascript | Coderhouse | PRE-ENTREGA 3 | Ian SOSA
 
 // Este algoritmo representa una versión primitiva del proyecto final: recrear la tienda "Havanna" online.
 // Intencionalmente aplico los conceptos que aprendimos hasta ahora en las clases...
-// (Condicionales; ciclos; funciones; objetos; arrays; high-order functions)
+// (Condicionales; ciclos; funciones; objetos; arrays; high-order functions;
+// DOM; Eventos; localStorage; JSON; Sugar Syntax)
 // ergo es probable que hayan formas más óptimas de escalar el código.
 
 const PRODUCTOS = [
