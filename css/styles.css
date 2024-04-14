@@ -4,9 +4,32 @@ body {
     place-items: center;
     height: 100vh;
 }
+
 h1, h2, ul, li {
     font-family: system-ui, sans-serif;
     list-style-type: none;
     color: #f2f2f2;
     margin: 0;
-};
+}
+
+#listadoProductos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3vw;
+    max-width: 90vw;
+}
+
+#listadoProductos > li {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 15vw;
+    border: 0.5rem solid #f2f2f2;
+    border-radius: 0.5rem;
+    padding: 1vh 1vw;
+}
+
+#listadoProductos > li:hover {
+    background: #d9d9d9;
+    color: #121212;
+    cursor: pointer;
+}
