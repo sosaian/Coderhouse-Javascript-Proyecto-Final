@@ -154,7 +154,7 @@ function simuladorHavannaCLI() {
 
 //#region GUI
 
-function cargarListadoProductos()
+function cargarListadoProductos(indicesSeleccionados, carrito)
 {
     const LISTADO_PRODUCTOS = document.getElementById("listadoProductos");
     LISTADO_PRODUCTOS.textContent = "";
@@ -163,13 +163,44 @@ function cargarListadoProductos()
     {
         const LI = document.createElement("li");
         LI.textContent = producto.nombre;
+
+        LI.setAttribute("data-id", PRODUCTOS.indexOf(producto));
+        //  "data-id" lo uso para aprovechar que PRODUCTOS es un array de objetos indexado.
+        //  Quizás a futuro use otra forma de quizas no dejar expuesto la ID del producto...
+        
+        LI.addEventListener("click", () => {
+            let producto_id = parseInt(LI.getAttribute("data-id"));
+
+            if (indicesSeleccionados.includes(producto_id))
+            {
+                carrito[producto_id].cantidad += 1;
+            }
+            else
+            {
+                indicesSeleccionados.push(producto_id);
+    
+                carrito.push(
+                    {
+                        //  Elijo intencionalmente qué propiedades cargar al carrito
+                        //  Para controlar qué información expongo al usuario...
+                        id: producto_id,
+                        cantidad: 1
+                    }
+                );
+            }
+
+            console.log(carrito);
+        });
+
         LISTADO_PRODUCTOS.appendChild(LI);
     }
 }
 
 function simuladorHavannaGUI()
 {
-    cargarListadoProductos();
+    let indicesSeleccionados = [];
+    let carrito = [];
+    cargarListadoProductos(indicesSeleccionados, carrito);
 }
 
 simuladorHavannaGUI();
