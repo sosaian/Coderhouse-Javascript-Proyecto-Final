@@ -29,10 +29,11 @@ const PRODUCTOS = [
 function cargarListadoProductos(indicesSeleccionados, carrito)
 {
     const LISTADO_PRODUCTOS = document.getElementById("listadoProductos");
-    LISTADO_PRODUCTOS.textContent = "";
+    LISTADO_PRODUCTOS.textContent = ""; //  Limpio el mensaje de error para cargar los
+                                        //  productos (estoy asumiendo que siempre voy a
+                                        //  tener productos disponibles para mostrar...)
 
-    for (let producto of PRODUCTOS)
-    {
+    PRODUCTOS.forEach(producto => {
         const LI = document.createElement("li");
         LI.textContent = producto.nombre;
 
@@ -65,7 +66,7 @@ function cargarListadoProductos(indicesSeleccionados, carrito)
         });
 
         LISTADO_PRODUCTOS.appendChild(LI);
-    }
+    });
 }
 
 function simuladorHavannaGUI()
