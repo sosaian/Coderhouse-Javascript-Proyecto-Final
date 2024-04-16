@@ -26,7 +26,10 @@ const PRODUCTOS = [
     }
 ];
 
-function cargarListadoProductos(indicesSeleccionados, carrito)
+let indicesSeleccionados = [];
+let carrito = [];
+
+function cargarListadoProductos()
 {
     const LISTADO_PRODUCTOS = document.getElementById("listadoProductos");
     LISTADO_PRODUCTOS.textContent = ""; //  Limpio el mensaje de error para cargar los
@@ -41,39 +44,40 @@ function cargarListadoProductos(indicesSeleccionados, carrito)
         //  "data-id" lo uso para aprovechar que PRODUCTOS es un array de objetos indexado.
         //  Quizás a futuro use otra forma de quizas no dejar expuesto la ID del producto...
         
-        LI.addEventListener("click", () => {
-            let producto_id = parseInt(LI.getAttribute("data-id"));
-
-            if (indicesSeleccionados.includes(producto_id))
-            {
-                carrito[producto_id].cantidad += 1;
-            }
-            else
-            {
-                indicesSeleccionados.push(producto_id);
-    
-                carrito.push(
-                    {
-                        //  Elijo intencionalmente qué propiedades cargar al carrito
-                        //  Para controlar qué información expongo al usuario...
-                        id: producto_id,
-                        cantidad: 1
-                    }
-                );
-            }
-
-            console.log(carrito);
-        });
+        LI.addEventListener("click", () => { agregarCarrito(LI) });
 
         LISTADO_PRODUCTOS.appendChild(LI);
     });
 }
 
+function agregarCarrito(ELEMENTO)
+{
+    let producto_id = parseInt(ELEMENTO.getAttribute("data-id"));
+
+    if (indicesSeleccionados.includes(producto_id))
+    {
+        carrito[producto_id].cantidad += 1;
+    }
+    else
+    {
+        indicesSeleccionados.push(producto_id);
+
+        carrito.push(
+            {
+                //  Elijo intencionalmente qué propiedades cargar al carrito
+                //  Para controlar qué información expongo al usuario...
+                id: producto_id,
+                cantidad: 1
+            }
+        );
+    }
+
+    console.log(carrito);
+};
+
 function simuladorHavannaGUI()
 {
-    let indicesSeleccionados = [];
-    let carrito = [];
-    cargarListadoProductos(indicesSeleccionados, carrito);
+    cargarListadoProductos();
 }
 
 simuladorHavannaGUI();
