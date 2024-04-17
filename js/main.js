@@ -51,12 +51,24 @@ function cargarListadoProductos()
 }
 
 function agregarCarrito(ELEMENTO)
-{
+{   
+    const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
     let producto_id = parseInt(ELEMENTO.getAttribute("data-id"));
+
+    if (carrito.length === 0)
+    {
+        CARRITO_PRODUCTOS.textContent = "";
+    }
 
     if (indicesSeleccionados.includes(producto_id))
     {
         carrito[producto_id].cantidad += 1;
+
+        const SELECTOR = '[data-id="' + producto_id + '"]';
+        const LI_PRODUCTO = CARRITO_PRODUCTOS.querySelector(SELECTOR);
+        
+        let cantidadProducto = parseInt(LI_PRODUCTO.children[1].textContent);
+        LI_PRODUCTO.children[1].textContent = cantidadProducto + 1;
     }
     else
     {
@@ -70,9 +82,21 @@ function agregarCarrito(ELEMENTO)
                 cantidad: 1
             }
         );
-    }
 
-    console.log(carrito);
+        const LI = document.createElement("li");
+        LI.setAttribute("data-id", producto_id);
+        
+        const DIV_NOMBRE = document.createElement("div");
+        DIV_NOMBRE.textContent = PRODUCTOS[producto_id].nombre;
+        
+        const DIV_CANTIDAD = document.createElement("div");
+        DIV_CANTIDAD.textContent = 1;
+
+        LI.appendChild(DIV_NOMBRE);
+        LI.appendChild(DIV_CANTIDAD);
+
+        CARRITO_PRODUCTOS.appendChild(LI);
+    }
 };
 
 function simuladorHavannaGUI()
