@@ -64,8 +64,7 @@ function agregarCarrito(ELEMENTO)
     {
         carrito[producto_id].cantidad += 1;
 
-        const SELECTOR = '[data-id="' + producto_id + '"]';
-        const LI_PRODUCTO = CARRITO_PRODUCTOS.querySelector(SELECTOR);
+        const LI_PRODUCTO = document.getElementById(`carritoProducto${producto_id}`);
         
         let cantidadProducto = parseInt(LI_PRODUCTO.children[1].textContent);
         LI_PRODUCTO.children[1].textContent = cantidadProducto + 1;
@@ -84,7 +83,7 @@ function agregarCarrito(ELEMENTO)
         );
 
         const LI = document.createElement("li");
-        LI.setAttribute("data-id", producto_id);
+        LI.id = `carritoProducto${producto_id}`;
         
         const DIV_NOMBRE = document.createElement("div");
         DIV_NOMBRE.textContent = PRODUCTOS[producto_id].nombre;
@@ -92,12 +91,32 @@ function agregarCarrito(ELEMENTO)
         const DIV_CANTIDAD = document.createElement("div");
         DIV_CANTIDAD.textContent = 1;
 
+        const BUTTON_ELIMINAR = document.createElement("input");
+        BUTTON_ELIMINAR.setAttribute("type", "button");
+        BUTTON_ELIMINAR.setAttribute("value","❎");
+
+        BUTTON_ELIMINAR.addEventListener("click", () => eliminarCarrito(producto_id));
+
         LI.appendChild(DIV_NOMBRE);
         LI.appendChild(DIV_CANTIDAD);
+        LI.appendChild(BUTTON_ELIMINAR);
 
         CARRITO_PRODUCTOS.appendChild(LI);
     }
 };
+
+function eliminarCarrito(producto_id)
+{
+    const ELEMENTO = document.getElementById(`carritoProducto${producto_id}`);
+
+    ELEMENTO.remove();
+
+    indicesSeleccionados.splice(indicesSeleccionados.indexOf(producto_id), 1);
+
+    const INDICE_CARRITO = carrito.findIndex((elemento_actual) => elemento_actual.id === producto_id);
+    console.log(INDICE_CARRITO);
+    carrito.splice(INDICE_CARRITO, 1);
+}
 
 function simuladorHavannaGUI()
 {
