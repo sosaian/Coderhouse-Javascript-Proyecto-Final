@@ -62,6 +62,7 @@ function agregarCarrito(ELEMENTO)
     if (carrito.length === 0)
     {
         CARRITO_PRODUCTOS.textContent = "";
+        CARRITO_PRODUCTOS.classList.toggle("carritoVacio");
     }
 
     if (indicesSeleccionados.includes(producto_id))
@@ -70,8 +71,8 @@ function agregarCarrito(ELEMENTO)
 
         const LI_PRODUCTO = document.getElementById(`carritoProducto${producto_id}`);
         
-        let cantidadProducto = parseInt(LI_PRODUCTO.children[1].textContent);
-        LI_PRODUCTO.children[1].textContent = cantidadProducto + 1;
+        let cantidadProducto = parseInt(LI_PRODUCTO.children[2].textContent);
+        LI_PRODUCTO.children[2].textContent = cantidadProducto + 1;
     }
     else
     {
@@ -91,9 +92,15 @@ function agregarCarrito(ELEMENTO)
         
         const DIV_NOMBRE = document.createElement("div");
         DIV_NOMBRE.textContent = PRODUCTOS[producto_id].nombre;
+        LI.appendChild(DIV_NOMBRE);
+        
+        const DIV_CANTIDAD_LABEL = document.createElement("div");
+        DIV_CANTIDAD_LABEL.textContent = "Cantidad: ";
+        LI.appendChild(DIV_CANTIDAD_LABEL);
         
         const DIV_CANTIDAD = document.createElement("div");
         DIV_CANTIDAD.textContent = 1;
+        LI.appendChild(DIV_CANTIDAD);
 
         const BUTTON_ELIMINAR = document.createElement("input");
         BUTTON_ELIMINAR.setAttribute("type", "button");
@@ -101,8 +108,6 @@ function agregarCarrito(ELEMENTO)
 
         BUTTON_ELIMINAR.addEventListener("click", () => eliminarCarrito(producto_id));
 
-        LI.appendChild(DIV_NOMBRE);
-        LI.appendChild(DIV_CANTIDAD);
         LI.appendChild(BUTTON_ELIMINAR);
 
         CARRITO_PRODUCTOS.appendChild(LI);
@@ -127,6 +132,7 @@ function eliminarCarrito(producto_id)
     {
         const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
         CARRITO_PRODUCTOS.textContent = "¡Carrito vacío! Selecciona algún producto para comprar 😁";
+        CARRITO_PRODUCTOS.classList.toggle("carritoVacio");
     }
 
     calcularTotal();
