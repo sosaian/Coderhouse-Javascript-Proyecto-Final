@@ -116,6 +116,12 @@ function eliminarCarrito(producto_id)
     const INDICE_CARRITO = carrito.findIndex((elemento_actual) => elemento_actual.id === producto_id);
     console.log(INDICE_CARRITO);
     carrito.splice(INDICE_CARRITO, 1);
+
+    if (carrito.length === 0)
+    {
+        const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
+        CARRITO_PRODUCTOS.textContent = "¡Carrito vacío! Selecciona algún producto para comprar 😁";
+    }
 }
 
 function simuladorHavannaGUI()
