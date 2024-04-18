@@ -62,7 +62,7 @@ function agregarCarrito(ELEMENTO)
 
     if (indicesSeleccionados.includes(producto_id))
     {
-        carrito[producto_id].cantidad += 1;
+        carrito[carrito.findIndex((elemento_actual) => elemento_actual.id === producto_id)].cantidad += 1;
 
         const LI_PRODUCTO = document.getElementById(`carritoProducto${producto_id}`);
         
