@@ -29,6 +29,10 @@ const PRODUCTOS = [
 let indicesSeleccionados = [];
 let carrito = [];
 
+//IMPUESTOS
+//Valores expresados en % (al usarse se opera convirtiendo a su expresión decimal)
+const IVA = 21;
+
 function cargarListadoProductos()
 {
     const LISTADO_PRODUCTOS = document.getElementById("listadoProductos");
@@ -103,6 +107,8 @@ function agregarCarrito(ELEMENTO)
 
         CARRITO_PRODUCTOS.appendChild(LI);
     }
+
+    calcularTotal();
 };
 
 function eliminarCarrito(producto_id)
@@ -122,6 +128,29 @@ function eliminarCarrito(producto_id)
         const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
         CARRITO_PRODUCTOS.textContent = "¡Carrito vacío! Selecciona algún producto para comprar 😁";
     }
+
+    calcularTotal();
+}
+
+function calcularTotal() {
+    let precio_total = 0.0;
+
+    for (producto of carrito)
+    {
+        let subtotal = 0.0;
+
+        subtotal = PRODUCTOS[producto.id].precio * ((100 - PRODUCTOS[producto.id].descuento) / 100);
+        
+        subtotal *= producto.cantidad;   //NOTA: NO contemplo casos del tipo "2da unidad al 50%" en este algoritmo.
+
+        precio_total += subtotal;
+    }
+
+    precio_total *= 1 + (IVA / 100);   //Agrego impuestos (IVA).
+
+    const TOTAL = document.getElementById("totalCarrito").children[1];
+
+    TOTAL.textContent = precio_total;
 }
 
 function simuladorHavannaGUI()
