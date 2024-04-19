@@ -54,6 +54,21 @@ function cargarListadoProductos()
     });
 }
 
+function cargarCarrito()
+{
+    const BACKUP_CARRITO = JSON.parse(localStorage.getItem("carrito"));
+    
+    if (BACKUP_CARRITO === null)
+    {
+        console.log("¡Carrito vacío!");
+    }
+    else
+    {   
+        // carrito = BACKUP_CARRITO;
+        console.log(BACKUP_CARRITO);
+    }
+}
+
 function agregarCarrito(ELEMENTO)
 {   
     const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
@@ -114,6 +129,7 @@ function agregarCarrito(ELEMENTO)
     }
 
     calcularTotal();
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 };
 
 function eliminarCarrito(producto_id)
@@ -136,6 +152,7 @@ function eliminarCarrito(producto_id)
     }
 
     calcularTotal();
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 function calcularTotal() {
@@ -162,6 +179,7 @@ function calcularTotal() {
 function simuladorHavannaGUI()
 {
     cargarListadoProductos();
+    cargarCarrito();
 }
 
 simuladorHavannaGUI();
