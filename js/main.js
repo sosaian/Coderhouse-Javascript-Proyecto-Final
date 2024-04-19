@@ -193,9 +193,18 @@ function eliminarCarrito(producto_id)
     calcularTotal();
 };
 
-function calcularTotal() {
-    let precio_total = 0.0;
+function calcularTotal()
+{
+    const TOTAL = document.getElementById("totalCarrito").children[1];
+    
+    if (carrito.length === 0)
+    {
+        TOTAL.textContent = "0.00";
+        return;
+    }
 
+    let precio_total = 0.0;
+    
     carrito.forEach((producto) => {
         let subtotal = 0.0;
        
@@ -210,10 +219,8 @@ function calcularTotal() {
 
     precio_total *= 1 + (IVA / 100);   //Agrego impuestos (IVA).
 
-    const TOTAL = document.getElementById("totalCarrito").children[1];
-
     TOTAL.textContent = precio_total;
-}
+};
 
 function simuladorHavannaGUI()
 {
