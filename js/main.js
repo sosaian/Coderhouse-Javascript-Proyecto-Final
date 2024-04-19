@@ -64,10 +64,44 @@ function cargarCarrito()
     }
     else
     {   
-        // carrito = BACKUP_CARRITO;
-        console.log(BACKUP_CARRITO);
-    }
-}
+        carrito = BACKUP_CARRITO;
+
+        const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
+        CARRITO_PRODUCTOS.textContent = "";
+        CARRITO_PRODUCTOS.classList.toggle("carritoVacio");
+
+        carrito.forEach((producto) => {
+            indicesSeleccionados.push(producto.id);
+
+            const LI = document.createElement("li");
+            LI.id = `carritoProducto${producto.id}`;
+            
+            const DIV_NOMBRE = document.createElement("div");
+            DIV_NOMBRE.textContent = PRODUCTOS[producto.id].nombre;
+            LI.appendChild(DIV_NOMBRE);
+            
+            const DIV_CANTIDAD_LABEL = document.createElement("div");
+            DIV_CANTIDAD_LABEL.textContent = "Cantidad: ";
+            LI.appendChild(DIV_CANTIDAD_LABEL);
+            
+            const DIV_CANTIDAD = document.createElement("div");
+            DIV_CANTIDAD.textContent = producto.cantidad;
+            LI.appendChild(DIV_CANTIDAD);
+    
+            const BUTTON_ELIMINAR = document.createElement("input");
+            BUTTON_ELIMINAR.setAttribute("type", "button");
+            BUTTON_ELIMINAR.setAttribute("value","❎");
+    
+            BUTTON_ELIMINAR.addEventListener("click", () => eliminarCarrito(producto.id));
+    
+            LI.appendChild(BUTTON_ELIMINAR);
+    
+            CARRITO_PRODUCTOS.appendChild(LI);
+        });
+
+        calcularTotal();
+    };
+};
 
 function agregarCarrito(ELEMENTO)
 {   
@@ -149,11 +183,15 @@ function eliminarCarrito(producto_id)
         const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
         CARRITO_PRODUCTOS.textContent = "¡Carrito vacío! Selecciona algún producto para comprar 😁";
         CARRITO_PRODUCTOS.classList.toggle("carritoVacio");
+        localStorage.removeItem("carrito");
     }
+    else
+    {
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+    };
 
     calcularTotal();
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-}
+};
 
 function calcularTotal() {
     let precio_total = 0.0;
