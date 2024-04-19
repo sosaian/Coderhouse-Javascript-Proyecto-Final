@@ -158,16 +158,17 @@ function eliminarCarrito(producto_id)
 function calcularTotal() {
     let precio_total = 0.0;
 
-    for (producto of carrito)
-    {
+    carrito.forEach((producto) => {
         let subtotal = 0.0;
+       
+        let descuento = ((100 - PRODUCTOS[producto.id].descuento) / 100);
 
-        subtotal = PRODUCTOS[producto.id].precio * ((100 - PRODUCTOS[producto.id].descuento) / 100);
+        subtotal = PRODUCTOS[producto.id].precio * descuento;
         
         subtotal *= producto.cantidad;   //NOTA: NO contemplo casos del tipo "2da unidad al 50%" en este algoritmo.
 
         precio_total += subtotal;
-    }
+    });
 
     precio_total *= 1 + (IVA / 100);   //Agrego impuestos (IVA).
 
