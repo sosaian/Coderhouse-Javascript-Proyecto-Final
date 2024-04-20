@@ -42,14 +42,29 @@ function cargarListadoProductos()
 
     PRODUCTOS.forEach(producto => {
         const LI = document.createElement("li");
-        LI.textContent = producto.nombre;
-
-        LI.setAttribute("data-id", PRODUCTOS.indexOf(producto));
         //  "data-id" lo uso para aprovechar que PRODUCTOS es un array de objetos indexado.
         //  Quizás a futuro use otra forma de quizas no dejar expuesto la ID del producto...
-        
-        LI.addEventListener("click", () => { agregarCarrito(LI) });
+        LI.setAttribute("data-id", PRODUCTOS.indexOf(producto));
 
+        const IMG = document.createElement("img");
+        IMG.setAttribute("src", "https://placehold.co/75x100");
+
+        const DIV_NOMBRE = document.createElement("div");
+        DIV_NOMBRE.textContent = producto.nombre;
+        
+        const DIV_PRECIO = document.createElement("div");
+        DIV_PRECIO.textContent = `$ ${producto.precio}`;
+
+        const AGREGAR_AL_CARRITO = document.createElement("input");
+        AGREGAR_AL_CARRITO.setAttribute("type", "button");
+        AGREGAR_AL_CARRITO.setAttribute("value", "Agregar al carrito");
+
+        AGREGAR_AL_CARRITO.addEventListener("click", () => { agregarCarrito(LI) });
+        
+        LI.appendChild(IMG);
+        LI.appendChild(DIV_NOMBRE);
+        LI.appendChild(DIV_PRECIO);
+        LI.appendChild(AGREGAR_AL_CARRITO);
         LISTADO_PRODUCTOS.appendChild(LI);
     });
 }
