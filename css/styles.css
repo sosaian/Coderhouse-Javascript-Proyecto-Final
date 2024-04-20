@@ -120,15 +120,15 @@ main {
 
 #listadoProductos > li > input {
     padding: 0.5rem min(20%, 3rem);
-    background-color: #121212;
-    color: #f2f2f2;
+    background-color: #f2f2f2;
+    color: #121212;
     border: 0.1rem solid #f2f2f2;
     border-radius: 0.5rem;
 }
 
 #listadoProductos > li > input:hover {
-    background-color: #f2f2f2;
-    color: #121212;
+    background-color: #121212;
+    color: #f2f2f2;
     cursor: pointer;
 }
 
@@ -175,6 +175,16 @@ main {
 
 #carritoProductos > li > :last-child {
     grid-area: boton;
+    background-color: #f2f2f2;
+    color: #121212;
+    border: 0.1rem solid #f2f2f2;
+    border-radius: 0.5rem;
+}
+
+#carritoProductos > li > :last-child:hover {
+    background-color: #121212;
+    color: #f2f2f2;
+    cursor: pointer;
 }
 
 #totalCarrito {
@@ -187,17 +197,17 @@ main {
 }
 
 #comprarCarrito {
-    margin: 0.5rem;
+    margin-top: 0.5rem;
     grid-area: comprar;
-    background-color: #121212;
-    color: #f2f2f2;
+    background-color: #f2f2f2;
+    color: #121212;
     border: 0.1rem solid #f2f2f2;
     border-radius: 0.5rem;
 }
 
 #comprarCarrito:hover {
-    background-color: #f2f2f2;
-    color: #121212;
+    background-color: #121212;
+    color: #f2f2f2;
     cursor: pointer;
 }
 
