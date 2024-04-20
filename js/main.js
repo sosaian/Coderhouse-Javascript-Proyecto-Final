@@ -7,6 +7,8 @@
 // DOM; Eventos; localStorage; JSON; Sugar Syntax)
 // ergo es probable que hayan formas más óptimas de escalar el código.
 
+import Swal from 'sweetalert2'  // Documentación: https://sweetalert2.github.io/
+
 const PRODUCTOS = [
     {
         nombre: "Alfajores 70% Cacao Puro x9 unidades (¡Hoy 25% off!)",
