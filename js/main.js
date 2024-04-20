@@ -7,7 +7,8 @@
 // DOM; Eventos; localStorage; JSON; Sugar Syntax)
 // ergo es probable que hayan formas más óptimas de escalar el código.
 
-import Swal from 'sweetalert2'  // Documentación: https://sweetalert2.github.io/
+// LIBRERÍAS USADAS:
+// SweetAlert2 - Documentación: https://sweetalert2.github.io/
 
 const PRODUCTOS = [
     {
