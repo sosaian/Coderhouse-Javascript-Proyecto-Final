@@ -32,6 +32,10 @@ const PRODUCTOS = [
 let indicesSeleccionados = [];
 let carrito = [];
 
+const COMPRAR_BUTTON = document.getElementById("comprarCarrito");
+
+COMPRAR_BUTTON.addEventListener("click", () => (carrito.length === 0) || iniciarCompra());
+
 //IMPUESTOS
 //Valores expresados en % (al usarse se opera convirtiendo a su expresión decimal)
 const IVA = 21;
@@ -239,10 +243,6 @@ function calcularTotal()
 
     TOTAL.textContent = precio_total;
 };
-
-const COMPRAR_BUTTON = document.getElementById("comprarCarrito");
-
-COMPRAR_BUTTON.addEventListener("click", () => iniciarCompra());
 
 function iniciarCompra()
 {
