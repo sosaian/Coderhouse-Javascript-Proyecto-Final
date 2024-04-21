@@ -10,6 +10,7 @@
 // LIBRERÍAS USADAS:
 // SweetAlert2 - Documentación: https://sweetalert2.github.io/
 
+// #region GLOBALES
 const PRODUCTOS = [
     {
         nombre: "Alfajores 70% Cacao Puro x9 unidades (¡Hoy 25% off!)",
@@ -29,17 +30,16 @@ const PRODUCTOS = [
     }
 ];
 
-let indicesSeleccionados = [];
-let carrito = [];
+let indicesSeleccionados = [];  //  Array con el que compruebo los productos que ya estén
+                                //  en el carrito.
 
-const COMPRAR_BUTTON = document.getElementById("comprarCarrito");
-
-COMPRAR_BUTTON.addEventListener("click", () => (carrito.length === 0) || iniciarCompra());
+let carrito = [];   //  Array auxiliar para manipular el DOM correctamente.
 
 //IMPUESTOS
 //Valores expresados en % (al usarse se opera convirtiendo a su expresión decimal)
 const IVA = 21;
 
+// #region CARGA INICIAL
 function cargarListadoProductos()
 {
     const LISTADO_PRODUCTOS = document.getElementById("listadoProductos");
@@ -49,9 +49,17 @@ function cargarListadoProductos()
 
     PRODUCTOS.forEach(producto => {
         const LI = document.createElement("li");
-        //  "data-id" lo uso para aprovechar que PRODUCTOS es un array de objetos indexado.
-        //  Quizás a futuro use otra forma de quizas no dejar expuesto la ID del producto...
-        LI.setAttribute("data-id", PRODUCTOS.indexOf(producto));
+        
+        const PRODUCTO_ID = PRODUCTOS.indexOf(producto);    //  Uso esta constante auxiliar
+                                                            //  para asegurarme de no volver
+                                                            //  a recorrer todo el array de
+                                                            //  productos (escala mejor).
+        
+        LI.setAttribute("data-id", PRODUCTO_ID);    //  "data-id" lo uso para aprovechar que
+                                                    //  PRODUCTOS es un array de objetos
+                                                    //  indexado. Quizás a futuro use otra
+                                                    //  forma de quizas no dejar expuesta
+                                                    //  la ID del producto...
 
         const IMG = document.createElement("img");
         IMG.setAttribute("src", "https://placehold.co/75x100");
@@ -66,7 +74,7 @@ function cargarListadoProductos()
         AGREGAR_AL_CARRITO.setAttribute("type", "button");
         AGREGAR_AL_CARRITO.setAttribute("value", "Agregar al carrito");
 
-        AGREGAR_AL_CARRITO.addEventListener("click", () => { agregarCarrito(LI) });
+        AGREGAR_AL_CARRITO.addEventListener("click", () => agregarCarrito(PRODUCTO_ID));
         
         LI.appendChild(IMG);
         LI.appendChild(DIV_NOMBRE);
@@ -74,17 +82,13 @@ function cargarListadoProductos()
         LI.appendChild(AGREGAR_AL_CARRITO);
         LISTADO_PRODUCTOS.appendChild(LI);
     });
-}
+};
 
 function cargarCarrito()
 {
     const BACKUP_CARRITO = JSON.parse(localStorage.getItem("carrito"));
     
-    if (BACKUP_CARRITO === null)
-    {
-        console.log("¡Carrito vacío!");
-    }
-    else
+    if (BACKUP_CARRITO !== null)
     {   
         carrito = BACKUP_CARRITO;
 
@@ -112,7 +116,7 @@ function cargarCarrito()
     
             const BUTTON_ELIMINAR = document.createElement("input");
             BUTTON_ELIMINAR.setAttribute("type", "button");
-            BUTTON_ELIMINAR.setAttribute("value","❎");
+            BUTTON_ELIMINAR.setAttribute("value", "❎");
     
             BUTTON_ELIMINAR.addEventListener("click", () => eliminarCarrito(producto.id));
     
@@ -125,20 +129,22 @@ function cargarCarrito()
     };
 };
 
-function agregarCarrito(ELEMENTO)
+
+// #region CARRITO
+function agregarCarrito(producto_id)
 {   
     const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
-    let producto_id = parseInt(ELEMENTO.getAttribute("data-id"));
 
     if (carrito.length === 0)
     {
         CARRITO_PRODUCTOS.textContent = "";
         CARRITO_PRODUCTOS.classList.toggle("carritoVacio");
-    }
+    };
 
     if (indicesSeleccionados.includes(producto_id))
-    {
-        carrito[carrito.findIndex((elemento_actual) => elemento_actual.id === producto_id)].cantidad += 1;
+    {   
+        const INDICE = carrito.findIndex((elemento_actual) => elemento_actual.id === producto_id);
+        carrito[INDICE].cantidad += 1;
 
         const LI_PRODUCTO = document.getElementById(`carritoProducto${producto_id}`);
         
@@ -197,7 +203,6 @@ function eliminarCarrito(producto_id)
     indicesSeleccionados.splice(indicesSeleccionados.indexOf(producto_id), 1);
 
     const INDICE_CARRITO = carrito.findIndex((elemento_actual) => elemento_actual.id === producto_id);
-    console.log(INDICE_CARRITO);
     carrito.splice(INDICE_CARRITO, 1);
 
     if (carrito.length === 0)
@@ -223,7 +228,7 @@ function calcularTotal()
     {
         TOTAL.textContent = "0.00";
         return;
-    }
+    };
 
     let precio_total = 0.0;
     
@@ -244,6 +249,7 @@ function calcularTotal()
     TOTAL.textContent = precio_total;
 };
 
+// #region COMPRA
 function iniciarCompra()
 {
     const TOTAL = document.getElementById("totalCarrito").children[1];
@@ -276,7 +282,7 @@ function iniciarCompra()
             });
 
             vaciarCarrito();
-        }
+        };
     });
 };
 
@@ -306,6 +312,10 @@ function simuladorHavannaGUI()
 {
     cargarListadoProductos();
     cargarCarrito();
-}
+
+    const COMPRAR_BUTTON = document.getElementById("comprarCarrito");
+
+    COMPRAR_BUTTON.addEventListener("click", () => (carrito.length === 0) || iniciarCompra());
+};
 
 simuladorHavannaGUI();
