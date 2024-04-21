@@ -274,8 +274,32 @@ function iniciarCompra()
                 icon: "success",
                 title: "¡Compra realizada con éxito!"
             });
+
+            vaciarCarrito();
         }
     });
+};
+
+function vaciarCarrito()
+{
+    const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
+
+    for (elemento of CARRITO_PRODUCTOS.children)
+    {
+        elemento.remove();  //  Elimino todos los productos del carrito.
+    };
+
+    CARRITO_PRODUCTOS.textContent = "¡Carrito vacío! Selecciona algún producto para comprar 😁";
+    CARRITO_PRODUCTOS.classList.toggle("carritoVacio");
+    
+    //  Vacío tanto el localStorage como los array indicesSeleccionados y carrito.
+    localStorage.removeItem("carrito");
+    indicesSeleccionados = [];
+    carrito = [];
+
+    //  Reinicio el valor de TOTAL en el carrito.
+    const TOTAL = document.getElementById("totalCarrito").children[1];
+    TOTAL.textContent = "0.00";
 };
 
 function simuladorHavannaGUI()
