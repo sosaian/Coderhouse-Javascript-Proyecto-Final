@@ -110,9 +110,41 @@ function cargarCarrito()
             DIV_CANTIDAD_LABEL.textContent = "Cantidad: ";
             LI.appendChild(DIV_CANTIDAD_LABEL);
             
+            const DIV_CANTIDAD_CONTAINER = document.createElement("div");
+
+            const BUTTON_REDUCIR = document.createElement("input");
+            BUTTON_REDUCIR.setAttribute("type", "button");
+            BUTTON_REDUCIR.setAttribute("value","➖");
+            BUTTON_REDUCIR.addEventListener("click", () => {
+                let cantidad = parseInt(DIV_CANTIDAD.textContent);
+                
+                if (cantidad > 1)
+                {
+                    DIV_CANTIDAD.textContent = cantidad - 1;
+                    carrito[indicesSeleccionados.indexOf(producto.id)].cantidad--;
+                    calcularTotal();
+                    localStorage.setItem("carrito", JSON.stringify(carrito));
+                };
+            });
+            DIV_CANTIDAD_CONTAINER.appendChild(BUTTON_REDUCIR);
+            
             const DIV_CANTIDAD = document.createElement("div");
-            DIV_CANTIDAD.textContent = producto.cantidad;
-            LI.appendChild(DIV_CANTIDAD);
+            DIV_CANTIDAD.textContent = carrito[indicesSeleccionados.indexOf(producto.id)].cantidad;
+            DIV_CANTIDAD_CONTAINER.appendChild(DIV_CANTIDAD);
+
+            const BUTTON_AUMENTAR = document.createElement("input");
+            BUTTON_AUMENTAR.setAttribute("type", "button");
+            BUTTON_AUMENTAR.setAttribute("value","➕");
+            BUTTON_AUMENTAR.addEventListener("click", () => {
+                let cantidad = parseInt(DIV_CANTIDAD.textContent);
+                DIV_CANTIDAD.textContent = cantidad + 1;
+                carrito[indicesSeleccionados.indexOf(producto.id)].cantidad++;
+                calcularTotal();
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+            });
+            DIV_CANTIDAD_CONTAINER.appendChild(BUTTON_AUMENTAR);
+
+            LI.appendChild(DIV_CANTIDAD_CONTAINER);
     
             const BUTTON_ELIMINAR = document.createElement("input");
             BUTTON_ELIMINAR.setAttribute("type", "button");
@@ -148,8 +180,8 @@ function agregarCarrito(producto_id)
 
         const LI_PRODUCTO = document.getElementById(`carritoProducto${producto_id}`);
         
-        let cantidadProducto = parseInt(LI_PRODUCTO.children[2].textContent);
-        LI_PRODUCTO.children[2].textContent = cantidadProducto + 1;
+        let cantidadProducto = parseInt(LI_PRODUCTO.children[2].children[1].textContent);
+        LI_PRODUCTO.children[2].children[1].textContent = cantidadProducto + 1;
     }
     else
     {
@@ -174,10 +206,42 @@ function agregarCarrito(producto_id)
         const DIV_CANTIDAD_LABEL = document.createElement("div");
         DIV_CANTIDAD_LABEL.textContent = "Cantidad: ";
         LI.appendChild(DIV_CANTIDAD_LABEL);
+
+        const DIV_CANTIDAD_CONTAINER = document.createElement("div");
+
+        const BUTTON_REDUCIR = document.createElement("input");
+        BUTTON_REDUCIR.setAttribute("type", "button");
+        BUTTON_REDUCIR.setAttribute("value","➖");
+        BUTTON_REDUCIR.addEventListener("click", () => {
+            let cantidad = parseInt(DIV_CANTIDAD.textContent);
+            
+            if (cantidad > 1)
+            {
+                DIV_CANTIDAD.textContent = cantidad - 1;
+                carrito[indicesSeleccionados.indexOf(producto_id)].cantidad--;
+                calcularTotal();
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+            };
+        });
+        DIV_CANTIDAD_CONTAINER.appendChild(BUTTON_REDUCIR);
         
         const DIV_CANTIDAD = document.createElement("div");
         DIV_CANTIDAD.textContent = 1;
-        LI.appendChild(DIV_CANTIDAD);
+        DIV_CANTIDAD_CONTAINER.appendChild(DIV_CANTIDAD);
+
+        const BUTTON_AUMENTAR = document.createElement("input");
+        BUTTON_AUMENTAR.setAttribute("type", "button");
+        BUTTON_AUMENTAR.setAttribute("value","➕");
+        BUTTON_AUMENTAR.addEventListener("click", () => {
+            let cantidad = parseInt(DIV_CANTIDAD.textContent);
+            DIV_CANTIDAD.textContent = cantidad + 1;
+            carrito[indicesSeleccionados.indexOf(producto_id)].cantidad++;
+            calcularTotal();
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+        });
+        DIV_CANTIDAD_CONTAINER.appendChild(BUTTON_AUMENTAR);
+
+        LI.appendChild(DIV_CANTIDAD_CONTAINER);
 
         const BUTTON_ELIMINAR = document.createElement("input");
         BUTTON_ELIMINAR.setAttribute("type", "button");
