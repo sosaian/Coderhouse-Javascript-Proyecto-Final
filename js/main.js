@@ -15,7 +15,7 @@ let productos = [];
 
 async function cargarProductos()
 {
-    const RESPONSE = await fetch("/data/productos.json");
+    const RESPONSE = await fetch("./data/productos.json");
     const DATA = await RESPONSE.json();
 
     productos = DATA;
