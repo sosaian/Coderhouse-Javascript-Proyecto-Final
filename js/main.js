@@ -13,15 +13,6 @@
 // #region GLOBALES ---------------------------------------------------------------------
 let productos = [];
 
-async function cargarProductos()
-{
-    const RESPONSE = await fetch("./data/productos.json");
-    const DATA = await RESPONSE.json();
-
-    productos = DATA;
-    cargarListadoProductos();
-};
-
 let indicesSeleccionados = [];  //  Array con el que compruebo los productos que ya estén
                                 //  en el carrito.
 
@@ -151,6 +142,17 @@ function cargarCarrito()
 
         calcularTotal();
     };
+};
+
+async function cargarProductos()
+{
+    const RESPONSE = await fetch("./data/productos.json");  //  Agarro JSON de productos.
+    const DATA = await RESPONSE.json();                     //  Convierto en array de objetos,
+
+    productos = DATA;                                       //  y lo cargo globalmente.
+    
+    cargarListadoProductos();                               //  Una vez terminado, ejecuto
+    cargarCarrito();                                        //  las demás cargas iniciales.
 };
 
 
@@ -368,8 +370,7 @@ function vaciarCarrito()
 
 function simuladorHavannaGUI()
 {
-    cargarProductos()
-    cargarCarrito();
+    cargarProductos();
 
     const COMPRAR_BUTTON = document.getElementById("comprarCarrito");
 
