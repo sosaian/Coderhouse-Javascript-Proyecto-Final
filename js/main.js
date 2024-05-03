@@ -10,25 +10,17 @@
 // LIBRERÍAS USADAS:
 // SweetAlert2 - Documentación: https://sweetalert2.github.io/
 
-// #region GLOBALES
-const PRODUCTOS = [
-    {
-        nombre: "Alfajores 70% Cacao Puro x9 unidades (¡Hoy 25% off!)",
-        precio: 16500.00,
-        descuento: 25 
-        //Descuento expresado en % (al usarse se opera convirtiendo a su expresión decimal)
-    },
-    {
-        nombre: "Havannets de coco 70% Cacao x6 unidades",
-        precio: 6700.00,
-        descuento: 0
-    },
-    {
-        nombre: "Galletitas de limón x12 unidades",
-        precio: 2500.00,
-        descuento: 0
-    }
-];
+// #region GLOBALES ---------------------------------------------------------------------
+let productos = [];
+
+async function cargarProductos()
+{
+    const RESPONSE = await fetch("/data/productos.json");
+    const DATA = await RESPONSE.json();
+
+    productos = DATA;
+    cargarListadoProductos();
+};
 
 let indicesSeleccionados = [];  //  Array con el que compruebo los productos que ya estén
                                 //  en el carrito.
@@ -39,7 +31,7 @@ let carrito = [];   //  Array auxiliar para manipular el DOM correctamente.
 //Valores expresados en % (al usarse se opera convirtiendo a su expresión decimal)
 const IVA = 21;
 
-// #region CARGA INICIAL
+// #region CARGA INICIAL ----------------------------------------------------------------
 function cargarListadoProductos()
 {
     const LISTADO_PRODUCTOS = document.getElementById("listadoProductos");
@@ -47,10 +39,10 @@ function cargarListadoProductos()
                                         //  productos (estoy asumiendo que siempre voy a
                                         //  tener productos disponibles para mostrar...)
 
-    PRODUCTOS.forEach(producto => {
+    productos.forEach(producto => {
         const LI = document.createElement("li");
         
-        const PRODUCTO_ID = PRODUCTOS.indexOf(producto);    //  Uso esta constante auxiliar
+        const PRODUCTO_ID = productos.indexOf(producto);    //  Uso esta constante auxiliar
                                                             //  para asegurarme de no volver
                                                             //  a recorrer todo el array de
                                                             //  productos (escala mejor).
@@ -103,7 +95,7 @@ function cargarCarrito()
             LI.id = `carritoProducto${producto.id}`;
             
             const DIV_NOMBRE = document.createElement("div");
-            DIV_NOMBRE.textContent = PRODUCTOS[producto.id].nombre;
+            DIV_NOMBRE.textContent = productos[producto.id].nombre;
             LI.appendChild(DIV_NOMBRE);
             
             const DIV_CANTIDAD_LABEL = document.createElement("div");
@@ -162,7 +154,7 @@ function cargarCarrito()
 };
 
 
-// #region CARRITO
+// #region CARRITO ----------------------------------------------------------------------
 function agregarCarrito(producto_id)
 {   
     const CARRITO_PRODUCTOS = document.getElementById("carritoProductos");
@@ -200,7 +192,7 @@ function agregarCarrito(producto_id)
         LI.id = `carritoProducto${producto_id}`;
         
         const DIV_NOMBRE = document.createElement("div");
-        DIV_NOMBRE.textContent = PRODUCTOS[producto_id].nombre;
+        DIV_NOMBRE.textContent = productos[producto_id].nombre;
         LI.appendChild(DIV_NOMBRE);
         
         const DIV_CANTIDAD_LABEL = document.createElement("div");
@@ -299,9 +291,9 @@ function calcularTotal()
     carrito.forEach((producto) => {
         let subtotal = 0.0;
        
-        let descuento = ((100 - PRODUCTOS[producto.id].descuento) / 100);
+        let descuento = ((100 - productos[producto.id].descuento) / 100);
 
-        subtotal = PRODUCTOS[producto.id].precio * descuento;
+        subtotal = productos[producto.id].precio * descuento;
         
         subtotal *= producto.cantidad;   //NOTA: NO contemplo casos del tipo "2da unidad al 50%" en este algoritmo.
 
@@ -313,7 +305,7 @@ function calcularTotal()
     TOTAL.textContent = precio_total;
 };
 
-// #region COMPRA
+// #region COMPRA -----------------------------------------------------------------------
 function iniciarCompra()
 {
     const TOTAL = document.getElementById("totalCarrito").children[1];
@@ -372,9 +364,11 @@ function vaciarCarrito()
     TOTAL.textContent = "0.00";
 };
 
+// #region SimuladorHavanna -------------------------------------------------------------
+
 function simuladorHavannaGUI()
 {
-    cargarListadoProductos();
+    cargarProductos()
     cargarCarrito();
 
     const COMPRAR_BUTTON = document.getElementById("comprarCarrito");

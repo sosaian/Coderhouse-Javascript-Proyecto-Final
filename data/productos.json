@@ -1,0 +1,17 @@
+[
+    {
+        "nombre": "Alfajores 70% Cacao Puro x9 unidades (¡Hoy 25% off!)",
+        "precio": 16500.00,
+        "descuento": 25 
+    },
+    {
+        "nombre": "Havannets de coco 70% Cacao x6 unidades",
+        "precio": 6700.00,
+        "descuento": 0
+    },
+    {
+        "nombre": "Galletitas de limón x12 unidades",
+        "precio": 2500.00,
+        "descuento": 0
+    }
+]
