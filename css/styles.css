@@ -54,9 +54,13 @@ li {
 
 /* ========================================================== */
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: #121212;
-    height: 100vh;
+    max-height: 100vh;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 1fr 8fr 1fr;
@@ -85,10 +89,12 @@ main {
     grid-template-areas:
         "productos carrito"
         "productos total"
-        "productos comprar"
+        "productos comprar";
+    overflow-y: hidden;
 }
 
 #listadoProductos {
+    margin-right: 0.5rem;
     padding: 0.5rem;
     grid-area: productos;
 
@@ -97,6 +103,9 @@ main {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+
+    max-height: 100%;
+    overflow-y: scroll;
 }
 
 #listadoProductos > li {
@@ -138,6 +147,7 @@ main {
     border-left: 0.1rem solid #f2f2f2;
     border-right: 0.1rem solid #f2f2f2;
     border-radius: 0.5rem 0.5rem 0 0;
+    overflow-y: auto;
 }
 
 .carritoVacio {
@@ -146,7 +156,8 @@ main {
 }
 
 #carritoProductos > li {
-    margin: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem 0 0 0.5rem;
     list-style-type: none;
     display: grid;
     grid-template-columns: 2fr 7fr 1fr;
@@ -157,9 +168,11 @@ main {
 }
 
 #carritoProductos > li:not(:first-child) {
-    margin-top: 1rem;
-    padding-top: 1rem;
     border-top: 0.1rem solid #f2f2f2;
+}
+
+#carritoProductos > li:last-child {
+    margin-bottom: 1rem;
 }
 
 #carritoProductos > li > :first-child {
