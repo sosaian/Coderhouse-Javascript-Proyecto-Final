@@ -1,17 +1,47 @@
 [
     {
-        "nombre": "Alfajores 70% Cacao Puro x9 unidades (¡Hoy 25% off!)",
+        "nombre": "ALFAJORES SEMILLA x 9uds",
         "precio": 16500.00,
-        "descuento": 25 
+        "descuento": 20 
     },
     {
-        "nombre": "Havannets de coco 70% Cacao x6 unidades",
-        "precio": 6700.00,
+        "nombre": "ALFAJORES SUPER DULCE DE LECHE x 9un.",
+        "precio": 16500.00,
+        "descuento": 20
+    },
+    {
+        "nombre": "ALFAJORES 70% CACAO PURO X 9 uds",
+        "precio": 16500.00,
         "descuento": 0
     },
     {
-        "nombre": "Galletitas de limón x12 unidades",
-        "precio": 2500.00,
+        "nombre": "ALFAJORES CHOCOLATE x 12 uds",
+        "precio": 15000.00,
+        "descuento": 0
+    },
+    {
+        "nombre": "ALFAJORES CHOCOLATE x 6 uds",
+        "precio": 7600.00,
+        "descuento": 0
+    },
+    {
+        "nombre": "ALFAJORES MIXTOS CLÁSICOS x 6 uds",
+        "precio": 7600.00,
+        "descuento": 0
+    },
+    {
+        "nombre": "ALFAJORES MIXTOS CLÁSICOS x 12 uds",
+        "precio": 15000.00,
+        "descuento": 0
+    },
+    {
+        "nombre": "MINI ALFAJORES MIXTOS DE CHOCOLATE x 475g",
+        "precio": 16800.00,
+        "descuento": 0
+    },
+    {
+        "nombre": "MINI ALFAJORES x 475g",
+        "precio": 16800.00,
         "descuento": 0
     }
 ]
