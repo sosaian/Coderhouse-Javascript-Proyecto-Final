@@ -280,7 +280,7 @@ function eliminarCarrito(producto_id)
 
 function calcularTotal()
 {
-    const TOTAL = document.getElementById("totalCarrito").children[1];
+    const TOTAL = document.getElementById("totalCarrito");
     
     if (carrito.length === 0)
     {
@@ -310,7 +310,7 @@ function calcularTotal()
 // #region COMPRA -----------------------------------------------------------------------
 function iniciarCompra()
 {
-    const TOTAL = document.getElementById("totalCarrito").children[1];
+    const TOTAL = document.getElementById("totalCarrito");
 
     Swal.fire({
         title: '¿Continuar con la compra?',
@@ -362,7 +362,7 @@ function vaciarCarrito()
     carrito = [];
 
     //  Reinicio el valor de TOTAL en el carrito.
-    const TOTAL = document.getElementById("totalCarrito").children[1];
+    const TOTAL = document.getElementById("totalCarrito");
     TOTAL.textContent = "0.00";
 };
 
@@ -371,6 +371,10 @@ function vaciarCarrito()
 function simuladorHavannaGUI()
 {
     cargarProductos();
+
+    const VACIAR_BUTTON = document.getElementById("vaciarCarrito");
+
+    VACIAR_BUTTON.addEventListener("click", () => (carrito.length === 0) || vaciarCarrito());
 
     const COMPRAR_BUTTON = document.getElementById("comprarCarrito");
 
