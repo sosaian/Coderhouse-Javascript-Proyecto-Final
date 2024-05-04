@@ -160,11 +160,12 @@ main {
     padding: 0.5rem 0 0 0.5rem;
     list-style-type: none;
     display: grid;
-    grid-template-columns: 2fr 7fr 1fr;
+    grid-template-columns: 2fr 2fr 5fr 1fr;
     grid-template-rows: 3rlh 1rlh;
     grid-template-areas:
-        "nombre nombre boton"
-        "cantidad numero boton"
+        "foto nombre nombre boton"
+        "foto cantidad numero boton";
+    max-width: none;
 }
 
 #carritoProductos > li:not(:first-child) {
@@ -176,21 +177,25 @@ main {
 }
 
 #carritoProductos > li > :first-child {
-    grid-area: nombre;
+    grid-area: foto;
 }
 
 #carritoProductos > li > :nth-child(2) {
-    grid-area: cantidad;
+    grid-area: nombre;
 }
 
 #carritoProductos > li > :nth-child(3) {
+    grid-area: cantidad;
+}
+
+#carritoProductos > li > :nth-child(4) {
     grid-area: numero;
     display: flex;
     gap: 1rem;
 }
 
-#carritoProductos > li > :nth-child(3) > :first-child,
-#carritoProductos > li > :nth-child(3) > :last-child {
+#carritoProductos > li > :nth-child(4) > :first-child,
+#carritoProductos > li > :nth-child(4) > :last-child {
     height: 1.5rem;
     width: 1.5rem;
     background-color: #f2f2f2;

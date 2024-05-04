@@ -84,6 +84,10 @@ function cargarCarrito()
 
             const LI = document.createElement("li");
             LI.id = `carritoProducto${producto.id}`;
+
+            const IMG = document.createElement("img");
+            IMG.setAttribute("src", "https://placehold.co/50x75");
+            LI.appendChild(IMG);
             
             const DIV_NOMBRE = document.createElement("div");
             DIV_NOMBRE.textContent = productos[producto.id].nombre;
@@ -192,6 +196,10 @@ function agregarCarrito(producto_id)
 
         const LI = document.createElement("li");
         LI.id = `carritoProducto${producto_id}`;
+
+        const IMG = document.createElement("img");
+        IMG.setAttribute("src", "https://placehold.co/50x75");
+        LI.appendChild(IMG);
         
         const DIV_NOMBRE = document.createElement("div");
         DIV_NOMBRE.textContent = productos[producto_id].nombre;
