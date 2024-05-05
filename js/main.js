@@ -374,6 +374,23 @@ function vaciarCarrito()
     TOTAL.textContent = "0.00";
 };
 
+// #region BUSCADOR ---------------------------------------------------------------------
+
+function chequearBuscador(nombre_producto)
+{
+    //  Uso "aux" para hacer más legible la línea de código donde cargo RESULTADO con los resultados
+    //  de la búsqueda... filter realiza una BÚSQUEDA LINEAL, por lo que no escala bien, pero para
+    //  este proyecto es correcto dada la poca cantidad de productos que uso.
+
+    //  Uso toUpperCase() para no hacer la búsqueda case-sensitive; uso trim() para ignorar el padding.
+
+    let aux = nombre_producto.toUpperCase().trim();
+
+    const RESULTADO = productos.filter(producto => producto.nombre.toUpperCase().includes(aux));
+
+    console.log(RESULTADO.length !== 0 ? RESULTADO : "No tenemos un producto con ese nombre... 😢");
+};
+
 // #region SimuladorHavanna -------------------------------------------------------------
 
 function simuladorHavannaGUI()
@@ -387,6 +404,22 @@ function simuladorHavannaGUI()
     const COMPRAR_BUTTON = document.getElementById("comprarCarrito");
 
     COMPRAR_BUTTON.addEventListener("click", () => (carrito.length === 0) || iniciarCompra());
+
+    const BUSCADOR_INPUT = document.getElementById('buscadorInput');
+
+    BUSCADOR_INPUT.focus();
+    
+    BUSCADOR_INPUT.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" || BUSCADOR_INPUT.value.trim() === "")
+            return;
+        
+        e.preventDefault();
+        chequearBuscador(BUSCADOR_INPUT.value);
+    });
+    
+    const BUSCADOR_BUTTON = document.getElementById('buscadorButton');
+
+    BUSCADOR_BUTTON.addEventListener("click", () => chequearBuscador(BUSCADOR_INPUT.value));
 };
 
 simuladorHavannaGUI();

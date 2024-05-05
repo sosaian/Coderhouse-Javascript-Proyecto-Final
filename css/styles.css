@@ -76,7 +76,38 @@ header {
     border-bottom: 0.5rem solid #f2f2f2;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header > div {
+    display: flex;
+    gap: 0;
+}
+
+#buscadorInput,
+#buscadorInput:focus {
+    width: 30rem;
+    margin: 0;
+    padding: 0.5rem;
+    border: 0.1rem solid #f2f2f2;
+    border-radius: 0.5rem 0 0 0.5rem;
+    outline: none;
+}
+
+#buscadorButton {
+    margin: 0;
+    padding: 0.5rem;
+    border: 0.1rem solid #f2f2f2;
+    border-radius: 0 0.5rem 0.5rem 0;
+    background-color: #f2f2f2;
+    color: #121212;
+}
+
+#buscadorButton:hover {
+    background-color: #121212;
+    color: #f2f2f2;
+    cursor: pointer;
 }
 
 main {
