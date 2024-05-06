@@ -172,14 +172,14 @@ function agregarCarrito(producto_id)
     };
 
     if (indicesSeleccionados.includes(producto_id))
-    {   
+    {  
         const INDICE = carrito.findIndex((elemento_actual) => elemento_actual.id === producto_id);
         carrito[INDICE].cantidad += 1;
 
         const LI_PRODUCTO = document.getElementById(`carritoProducto${producto_id}`);
-        
-        let cantidadProducto = parseInt(LI_PRODUCTO.children[2].children[1].textContent);
-        LI_PRODUCTO.children[2].children[1].textContent = cantidadProducto + 1;
+       
+        let cantidadProducto = parseInt(LI_PRODUCTO.children[3].children[1].textContent);
+        LI_PRODUCTO.children[3].children[1].textContent = cantidadProducto + 1;
     }
     else
     {
