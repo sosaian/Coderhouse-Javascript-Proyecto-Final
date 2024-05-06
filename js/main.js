@@ -261,9 +261,10 @@ function agregarCarrito(producto_id)
 
     const Toast = Swal.mixin({
         toast: true,
-        position: "top-end",
+        position: "bottom-start",
         showConfirmButton: false,
-        timer: 2000,
+        showCloseButton: true,
+        timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.onmouseenter = Swal.stopTimer;
@@ -304,9 +305,10 @@ function eliminarCarrito(producto_id)
 
     const Toast = Swal.mixin({
         toast: true,
-        position: "top-end",
+        position: "bottom-start",
         showConfirmButton: false,
-        timer: 2000,
+        showCloseButton: true,
+        timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.onmouseenter = Swal.stopTimer;
@@ -366,8 +368,9 @@ function iniciarCompra()
         {
             const Toast = Swal.mixin({
                 toast: true,
-                position: "top-end",
+                position: "bottom-start",
                 showConfirmButton: false,
+                showCloseButton: true,
                 timer: 3000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
@@ -428,8 +431,9 @@ function chequearBuscador(nombre_producto)
     {
         const Toast = Swal.mixin({
             toast: true,
-            position: "top-end",
+            position: "bottom-start",
             showConfirmButton: false,
+            showCloseButton: true,
             timer: 3000,
             timerProgressBar: true,
             didOpen: (toast) => {
