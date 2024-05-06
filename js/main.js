@@ -390,7 +390,23 @@ function chequearBuscador(nombre_producto)
 
     if(RESULTADO.length === 0)
     {
-        console.log("No tenemos un producto con ese nombre... 😢");
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        
+        Toast.fire({
+            icon: "error",
+            title: "No tenemos un producto con ese nombre... 😢"
+        });
+
         return;
     };
 
