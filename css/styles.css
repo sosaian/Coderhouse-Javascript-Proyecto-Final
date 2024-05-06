@@ -172,6 +172,111 @@ main {
     cursor: pointer;
 }
 
+#detallesUsuario {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    grid-area: productos;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 3fr) 1fr;
+    grid-template-areas:
+        "nombre nombre nombre apellido apellido apellido"
+        "pais pais provincia provincia ciudad ciudad"
+        "calle calle depto depto cp cp"
+        "email email email tel tel tel"
+        "confirmar confirmar confirmar confirmar confirmar confirmar";
+    max-width: none;
+    gap: 1rem;
+}
+
+#detallesUsuario > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#detallesUsuario > input {
+    width: 30rem;
+    background-color: #f2f2f2;
+    color: #121212;
+    border: 0.1rem solid #f2f2f2;
+    border-radius: 0.5rem;
+}
+
+#detallesUsuario > input:hover {
+    background-color: #121212;
+    color: #f2f2f2;
+    cursor: pointer;
+}
+
+#detallesUsuario > div > input {
+    margin: 0;
+    padding: 0.5rem;
+    border: 0.1rem solid #f2f2f2;
+    border-radius: 0.5rem;
+    outline: none;
+}
+
+#detallesUsuario > div > input:focus {
+    border: 0.3rem solid #f2f2f2;
+}
+
+#detallesUsuario > :nth-child(1)
+{
+    grid-area: nombre;
+}
+
+#detallesUsuario > :nth-child(2)
+{
+    grid-area: apellido;
+}
+
+#detallesUsuario > :nth-child(3)
+{
+    grid-area: pais;
+}
+
+#detallesUsuario > :nth-child(4)
+{
+    grid-area: provincia;
+}
+
+#detallesUsuario > :nth-child(5)
+{
+    grid-area: ciudad;
+}
+
+#detallesUsuario > :nth-child(6)
+{
+    grid-area: calle;
+}
+
+#detallesUsuario > :nth-child(7)
+{
+    grid-area: depto;
+}
+
+#detallesUsuario > :nth-child(8)
+{
+    grid-area: cp;
+}
+
+#detallesUsuario > :nth-child(9)
+{
+    grid-area: email;
+}
+
+#detallesUsuario > :nth-child(10)
+{
+    grid-area: tel;
+}
+
+#detallesUsuario > :nth-child(11)
+{
+    grid-area: confirmar;
+}
+
 #carritoProductos {
     grid-area: carrito;
     border-top: 0.1rem solid #f2f2f2;
