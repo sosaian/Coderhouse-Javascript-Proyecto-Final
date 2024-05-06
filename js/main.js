@@ -386,7 +386,7 @@ function iniciarCompra()
 
             vaciarCarrito();
             vaciarListadoProductos();
-            cargarListadoProductosBuscador(productos);
+            cargarListadoProductos(productos);
         };
     });
 };
