@@ -469,7 +469,31 @@ function simuladorHavannaGUI()
 
     const VACIAR_BUTTON = document.getElementById("vaciarCarrito");
 
-    VACIAR_BUTTON.addEventListener("click", () => (carrito.length === 0) || vaciarCarrito());
+    VACIAR_BUTTON.addEventListener("click", () => {
+        
+        if (carrito.length === 0)
+            return;
+        
+        vaciarCarrito();
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "bottom-start",
+            showConfirmButton: false,
+            showCloseButton: true,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        
+        Toast.fire({
+            icon: "success",
+            title: "¡Carrito vaciado!"
+        });
+    });
 
     const COMPRAR_BUTTON = document.getElementById("comprarCarrito");
 
