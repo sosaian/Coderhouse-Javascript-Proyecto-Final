@@ -258,6 +258,23 @@ function agregarCarrito(producto_id)
 
     calcularTotal();
     localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    
+    Toast.fire({
+        icon: "success",
+        title: "¡Producto agregado al carrito!"
+    });
 };
 
 function eliminarCarrito(producto_id)
