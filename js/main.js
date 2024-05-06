@@ -301,6 +301,23 @@ function eliminarCarrito(producto_id)
     };
 
     calcularTotal();
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    
+    Toast.fire({
+        icon: "success",
+        title: "¡Producto eliminado del carrito!"
+    });
 };
 
 function calcularTotal()
