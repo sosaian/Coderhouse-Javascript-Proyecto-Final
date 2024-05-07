@@ -201,6 +201,56 @@ function calcularTotal()
     TOTAL.textContent = precio_total;
 };
 
+// #region DETALLES USUARIO -------------------------------------------------------------
+function chequearDetallesUsuario()
+{
+    //  INTENCIONALMENTE COMENTO Y MODIFICO ESTE FRAGMENTO DE CÓDIGO
+    //  OMITIENDO EL CHEQUEO DEL FORMULARIO
+    //  ( Para facilitar corrección de la entrega final... ^o^ )
+
+    // const FORM = document.getElementById("detallesUsuario");
+    // let ubicacion_error = [];
+
+    // for (let div = 0; div < 14; div++)
+    // {   
+    //     if (FORM.children[div].children[1].textContent === "")
+    //         ubicacion_error.push(FORM.children[div].children[0].textContent);
+    // };
+
+    // if (ubicacion_error.length)
+    if (false)
+    {
+        let ubicacion_error_nombres = "<ul>";
+
+        for (nombre of ubicacion_error)
+        {
+            console.log(nombre);
+            ubicacion_error_nombres += `<li>${nombre}</li>`;
+        }
+
+        Swal.fire({
+            title: 'Necesitamos que ingreses correctamente:',
+            html: `${ubicacion_error_nombres}`,
+            icon: 'error',
+            footer: '<a href="#">¿Por qué tengo este error?</a>',
+            allowOutsideClick: false
+        });
+    }
+    else
+    {
+        Swal.fire({
+            title: '¿Finalizar la compra?',
+            text: `Los datos ingresados son válidos, pero por favor asegúrate de que son correctos.`,
+            icon: 'question',
+            showDenyButton: 'true',
+            denyButtonText: 'No, cambiar detalles',
+            confirmButtonText: 'Si, terminar compra',
+            allowOutsideClick: false
+        }).then((respuesta) => respuesta.isDenied || finalizarCompra());
+    }
+}
+
+// #region FINALIZAR COMPRA -------------------------------------------------------------
 function finalizarCompra()
 {
     Swal.fire({
@@ -250,6 +300,10 @@ function simuladorHavannaCheckout()
             };
         });
     });
+
+    const CONFIRMAR_BUTTON = document.getElementById("detallesUsuarioConfirmar");
+
+    CONFIRMAR_BUTTON.addEventListener("click", () => chequearDetallesUsuario());
 };
 
 simuladorHavannaCheckout();
