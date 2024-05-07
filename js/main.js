@@ -419,6 +419,43 @@ function vaciarCarrito()
     TOTAL.textContent = "0.00";
 };
 
+function confirmarVaciarCarrito()
+{
+    Swal.fire({
+        title: '¿Vaciar carrito?',
+        icon: 'question',
+        showDenyButton: 'true',                             //  Invertí los textos para
+        denyButtonText: 'Si, vaciar carrito',               //  aprovechar UX del alert
+        confirmButtonText: 'No, continuar comprando'        //  (botón rojo en "deny" sin
+    }).then((respuesta) => {                                //  agregar CSS específico)
+        if (respuesta.isDenied)
+        {
+            if (carrito.length === 0)
+                return;
+            
+            vaciarCarrito();
+    
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "bottom-start",
+                showConfirmButton: false,
+                showCloseButton: true,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            
+            Toast.fire({
+                icon: "success",
+                title: "¡Carrito vaciado!"
+            });
+        };
+    });
+}
+
 // #region BUSCADOR ---------------------------------------------------------------------
 
 function chequearBuscador(nombre_producto)
@@ -479,31 +516,7 @@ function simuladorHavannaGUI()
 
     const VACIAR_BUTTON = document.getElementById("vaciarCarrito");
 
-    VACIAR_BUTTON.addEventListener("click", () => {
-        
-        if (carrito.length === 0)
-            return;
-        
-        vaciarCarrito();
-
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "bottom-start",
-            showConfirmButton: false,
-            showCloseButton: true,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            }
-        });
-        
-        Toast.fire({
-            icon: "success",
-            title: "¡Carrito vaciado!"
-        });
-    });
+    VACIAR_BUTTON.addEventListener("click", () => confirmarVaciarCarrito());
 
     const COMPRAR_BUTTON = document.getElementById("comprarCarrito");
 
