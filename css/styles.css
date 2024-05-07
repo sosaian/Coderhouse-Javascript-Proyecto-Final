@@ -483,3 +483,150 @@ footer {
     display: flex;
     justify-content: center;
 }
+
+/* 
+    MARK: MOBILE MEDIA QUERY
+ */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: x-large;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: large;
+        text-align: center;
+    }
+
+    body {
+        max-height: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    #buscadorInput,
+    #buscadorInput:focus {
+        width: 15rem;
+    }
+
+    main {
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+        padding: 0.5rem 0;
+        display: flex;
+        flex-direction: column;
+        overflow-y: unset;
+        max-width: 95vw;
+    }
+
+    #listadoProductos {
+        margin-right: unset;
+        padding: unset;
+    
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    
+        max-height: 100%;
+        overflow-y: scroll;
+    }
+    
+    #listadoProductos > li {
+        padding: 0.5rem;
+        width: 15rem;
+        height: 20rem;
+        list-style-type: none;
+        border: 0.1rem solid #f2f2f2;
+        border-radius: 0.5rem;
+    
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #detallesUsuario {
+        margin-right: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: unset;
+    }
+
+    #detallesUsuario > div {
+        width: 15rem;
+    }
+
+    #detallesUsuario > div > label {
+        padding-left: unset;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #detallesUsuario > input {
+        margin-top: 1rem;
+        width: 15rem;
+        margin-left: unset;
+        margin-right: unset;
+        padding: 0.5rem;
+    }
+
+    #carritoProductos {
+        margin: 4rem 0.5rem 0 0.5rem;
+        overflow-y: unset;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Cuando NO hay ningún hijo en #carritoProductos */
+    #carritoProductos:not(:has(:first-child))
+    {
+        padding: 5rem 0.5rem;
+    }
+
+    #carritoProductos > li {
+        max-width: unset;
+    }
+
+    #carritoBottomBar {
+        margin: 0 0.5rem;
+        padding: 0.5rem;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    #vaciarCarrito {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        width: 15rem;
+        margin-left: unset;
+        margin-right: unset;
+        padding: 0.5rem;
+    }
+
+    #comprarCarrito {
+        margin-top: unset;
+        margin: 2rem auto 0 auto;
+        padding: 0.5rem;
+        width: 15rem;
+    }
+
+    footer {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
