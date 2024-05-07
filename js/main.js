@@ -366,27 +366,33 @@ function iniciarCompra()
     }).then((respuesta) => {
         if (respuesta.isConfirmed)
         {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "bottom-start",
-                showConfirmButton: false,
-                showCloseButton: true,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.onmouseenter = Swal.stopTimer;
-                  toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            
-            Toast.fire({
-                icon: "success",
-                title: "¡Compra realizada con éxito!"
-            });
+            let ID_PAGINA = "checkout.html";
 
-            vaciarCarrito();
-            vaciarListadoProductos();
-            cargarListadoProductos(productos);
+            const LINK = new URL(`/${ID_PAGINA}`, window.location.origin);
+    
+            window.location.href = LINK;
+
+            // const Toast = Swal.mixin({
+            //     toast: true,
+            //     position: "bottom-start",
+            //     showConfirmButton: false,
+            //     showCloseButton: true,
+            //     timer: 3000,
+            //     timerProgressBar: true,
+            //     didOpen: (toast) => {
+            //       toast.onmouseenter = Swal.stopTimer;
+            //       toast.onmouseleave = Swal.resumeTimer;
+            //     }
+            // });
+            
+            // Toast.fire({
+            //     icon: "success",
+            //     title: "¡Compra realizada con éxito!"
+            // });
+
+            // vaciarCarrito();
+            // vaciarListadoProductos();
+            // cargarListadoProductos(productos);
         };
     });
 };
