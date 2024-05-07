@@ -287,7 +287,7 @@ function simuladorHavannaCheckout()
             denyButtonText: 'Si, vaciar y volver a la tienda',  //  aprovechar UX del alert
             confirmButtonText: 'No, continuar la compra'        //  (botón rojo en "deny" sin
         }).then((respuesta) => {                                //  agregar CSS específico)
-            if (!respuesta.isConfirmed)
+            if (respuesta.isDenied)
             {
                 localStorage.removeItem("carrito"); //  Elimino el carrito en localStorage
                 
