@@ -201,6 +201,26 @@ function calcularTotal()
     TOTAL.textContent = precio_total;
 };
 
+function finalizarCompra()
+{
+    Swal.fire({
+        title: "Compra finalizada",
+        text: "¡Compra realizada con éxito! Te contactaremos con el seguimiento del envío",
+        icon: "success",
+        confirmButtonText: "OK, volver a la tienda",
+        allowOutsideClick: false
+    }).then((respuesta) => {
+        localStorage.removeItem("carrito"); //  Elimino el carrito en localStorage
+            
+        //  Y llevo al usuario de vuelta a la tienda
+        let ID_PAGINA = "index.html";
+
+        const LINK = new URL(`/${ID_PAGINA}`, window.location.origin);
+
+        window.location.href = LINK;
+    });
+}
+
 // #region SimuladorHavanna -------------------------------------------------------------
 function simuladorHavannaCheckout()
 {
