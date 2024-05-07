@@ -118,12 +118,10 @@ function eliminarCarrito(producto_id)
                 localStorage.removeItem("carrito"); //  Elimino el carrito en localStorage
                 
                 //  Y llevo al usuario de vuelta a la tienda
-
-                let ID_PAGINA = "index.html";
+                let link = window.location.href;
+                link = link.replace(/\/checkout\.html$/, '');
         
-                const LINK = new URL(`/${ID_PAGINA}`, window.location.origin);
-        
-                window.location.href = LINK;
+                window.location.href = link;
             };
         });
     }
@@ -263,11 +261,10 @@ function finalizarCompra()
         localStorage.removeItem("carrito"); //  Elimino el carrito en localStorage
             
         //  Y llevo al usuario de vuelta a la tienda
-        let ID_PAGINA = "index.html";
+        let link = window.location.href;
+        link = link.replace(/\/checkout\.html$/, '');
 
-        const LINK = new URL(`/${ID_PAGINA}`, window.location.origin);
-
-        window.location.href = LINK;
+        window.location.href = link;
     });
 }
 
@@ -292,11 +289,10 @@ function simuladorHavannaCheckout()
                 localStorage.removeItem("carrito"); //  Elimino el carrito en localStorage
                 
                 //  Y llevo al usuario de vuelta a la tienda
-                let ID_PAGINA = "index.html";
+                let link = window.location.href;
+                link = link.replace(/\/checkout\.html$/, '');
         
-                const LINK = new URL(`/${ID_PAGINA}`, window.location.origin);
-        
-                window.location.href = LINK;
+                window.location.href = link;
             };
         });
     });

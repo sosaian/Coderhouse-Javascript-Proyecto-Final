@@ -366,11 +366,7 @@ function iniciarCompra()
     }).then((respuesta) => {
         if (respuesta.isConfirmed)
         {
-            let ID_PAGINA = "checkout.html";
-
-            const LINK = new URL(`/${ID_PAGINA}`, window.location.origin);
-    
-            window.location.href = LINK;
+            window.location.href += "checkout.html";
 
             // const Toast = Swal.mixin({
             //     toast: true,
