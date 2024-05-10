@@ -45,7 +45,7 @@ function cargarListadoProductos(productos)
                                                     //  la ID del producto...
 
         const IMG = document.createElement("img");
-        IMG.setAttribute("src", "https://placehold.co/75x100");
+        IMG.setAttribute("src", producto.img.default);
 
         const DIV_NOMBRE = document.createElement("div");
         DIV_NOMBRE.textContent = producto.nombre;
