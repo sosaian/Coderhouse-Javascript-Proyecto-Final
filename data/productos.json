@@ -3,54 +3,90 @@
         "id": 1,
         "nombre": "ALFAJORES SEMILLA x 9uds",
         "precio": 16500.00,
-        "descuento": 20 
+        "descuento": 20,
+        "img": {
+            "default": "https://placehold.co/75x100",
+            "thumbnail": "https://placehold.co/50x75"
+        }
     },
     {
         "id": 2,
         "nombre": "ALFAJORES SUPER DULCE DE LECHE x 9un.",
         "precio": 16500.00,
-        "descuento": 20
+        "descuento": 20,
+        "img": {
+            "default": "https://placehold.co/75x100",
+            "thumbnail": "https://placehold.co/50x75"
+        }
     },
     {
         "id": 3,
         "nombre": "ALFAJORES 70% CACAO PURO X 9 uds",
         "precio": 16500.00,
-        "descuento": 0
+        "descuento": 0,
+        "img": {
+            "default": "https://placehold.co/75x100",
+            "thumbnail": "https://placehold.co/50x75"
+        }
     },
     {
         "id": 4,
         "nombre": "ALFAJORES CHOCOLATE x 12 uds",
         "precio": 15000.00,
-        "descuento": 0
+        "descuento": 0,
+        "img": {
+            "default": "https://placehold.co/75x100",
+            "thumbnail": "https://placehold.co/50x75"
+        }
     },
     {
         "id": 5,
         "nombre": "ALFAJORES CHOCOLATE x 6 uds",
         "precio": 7600.00,
-        "descuento": 0
+        "descuento": 0,
+        "img": {
+            "default": "https://placehold.co/75x100",
+            "thumbnail": "https://placehold.co/50x75"
+        }
     },
     {
         "id": 6,
         "nombre": "ALFAJORES MIXTOS CLÁSICOS x 6 uds",
         "precio": 7600.00,
-        "descuento": 0
+        "descuento": 0,
+        "img": {
+            "default": "https://placehold.co/75x100",
+            "thumbnail": "https://placehold.co/50x75"
+        }
     },
     {
         "id": 7,
         "nombre": "ALFAJORES MIXTOS CLÁSICOS x 12 uds",
         "precio": 15000.00,
-        "descuento": 0
+        "descuento": 0,
+        "img": {
+            "default": "https://placehold.co/75x100",
+            "thumbnail": "https://placehold.co/50x75"
+        }
     },
     {
         "id": 8,
         "nombre": "MINI ALFAJORES MIXTOS DE CHOCOLATE x 475g",
         "precio": 16800.00,
-        "descuento": 0
+        "descuento": 0,
+        "img": {
+            "default": "https://placehold.co/75x100",
+            "thumbnail": "https://placehold.co/50x75"
+        }
     },
     {
         "id": 9,
         "nombre": "MINI ALFAJORES x 475g",
         "precio": 16800.00,
-        "descuento": 0
+        "descuento": 0,
+        "img": {
+            "default": "https://placehold.co/75x100",
+            "thumbnail": "https://placehold.co/50x75"
+        }
     }
 ]
