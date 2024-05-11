@@ -59,6 +59,12 @@ li {
 /*
     MARK: HTML
 */
+:root {
+    --clr-primary: #121212;
+    --clr-secondary: #f2f2f2;
+    --clr-accent: green;
+}
+
 html {
     scroll-behavior: smooth;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -68,7 +74,7 @@ html {
     MARK: BODY
 */
 body {
-    background-color: #121212;
+    background-color: var(--clr-primary);
     max-height: 100vh;
     display: grid;
     grid-template-columns: auto;
@@ -85,7 +91,7 @@ body {
 header {
     padding: 0.5rem;
     grid-area: header;
-    border-bottom: 0.5rem solid #f2f2f2;
+    border-bottom: 0.5rem solid var(--clr-secondary);
 
     display: flex;
     justify-content: space-between;
@@ -105,7 +111,7 @@ header > div {
     width: 30rem;
     margin: 0;
     padding: 0.5rem;
-    border: 0.1rem solid #f2f2f2;
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0.5rem 0 0 0.5rem;
     outline: none;
 }
@@ -113,15 +119,15 @@ header > div {
 #buscadorButton {
     margin: 0;
     padding: 0.5rem;
-    border: 0.1rem solid #f2f2f2;
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0 0.5rem 0.5rem 0;
-    background-color: #f2f2f2;
-    color: #121212;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
 }
 
 #buscadorButton:hover {
-    background-color: #121212;
-    color: #f2f2f2;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
     cursor: pointer;
 }
 
@@ -165,7 +171,7 @@ main {
     width: 15rem;
     height: 20rem;
     list-style-type: none;
-    border: 0.1rem solid #f2f2f2;
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0.5rem;
 
     display: flex;
@@ -181,15 +187,15 @@ main {
 
 #listadoProductos > li > input {
     padding: 0.5rem min(20%, 3rem);
-    background-color: #f2f2f2;
-    color: #121212;
-    border: 0.1rem solid #f2f2f2;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0.5rem;
 }
 
 #listadoProductos > li > input:hover {
-    background-color: #121212;
-    color: #f2f2f2;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
     cursor: pointer;
 }
 
@@ -226,21 +232,21 @@ main {
     margin-left: auto;
     margin-right: auto;
     padding: 0.5rem;
-    background-color: #f2f2f2;
-    color: #121212;
-    border: 0.1rem solid #f2f2f2;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0.5rem;
     outline: none;
 }
 
 #detallesUsuario > input:hover {
-    background-color: #121212;
-    color: #f2f2f2;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
     cursor: pointer;
 }
 
 #detallesUsuario > input:focus {
-    outline: 0.3rem solid green;
+    outline: 0.3rem solid var(--clr-accent);
 }
 
 #detallesUsuario > div > label {
@@ -250,13 +256,13 @@ main {
 #detallesUsuario > div > input {
     margin: 0;
     padding: 0.3rem;
-    border: 0.1rem solid #f2f2f2;
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0.5rem;
     outline: none;
 }
 
 #detallesUsuario > div > input:focus {
-    outline: 0.3rem solid green;
+    outline: 0.3rem solid var(--clr-accent);
 }
 
 #detallesUsuario > :nth-child(1)    /*  Intencionalmente evito :first-child por si tengo que cambiar el orden */
@@ -339,9 +345,9 @@ main {
 */
 #carritoProductos {
     grid-area: carrito;
-    border-top: 0.1rem solid #f2f2f2;
-    border-left: 0.1rem solid #f2f2f2;
-    border-right: 0.1rem solid #f2f2f2;
+    border-top: 0.1rem solid var(--clr-secondary);
+    border-left: 0.1rem solid var(--clr-secondary);
+    border-right: 0.1rem solid var(--clr-secondary);
     border-radius: 0.5rem 0.5rem 0 0;
     overflow-y: auto;
 }
@@ -365,7 +371,7 @@ main {
 }
 
 #carritoProductos > li:not(:first-child) {
-    border-top: 0.1rem solid #f2f2f2;
+    border-top: 0.1rem solid var(--clr-secondary);
 }
 
 #carritoProductos > li:last-child {
@@ -394,14 +400,14 @@ main {
 #carritoProductos > li > :nth-child(4) > :last-child {
     height: 1.5rem;
     width: 1.5rem;
-    background-color: #f2f2f2;
-    color: #121212;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
 }
 
 #carritoProductos > li > :nth-child(3) > :first-child:hover,
 #carritoProductos > li > :nth-child(3) > :last-child:hover {
-    background-color: #121212;
-    color: #f2f2f2;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
     cursor: pointer;
 }
 
@@ -410,15 +416,15 @@ main {
     margin: 1rem;
     height: 2rem;
     width: 2rem;
-    background-color: #f2f2f2;
-    color: #121212;
-    border: 0.1rem solid #f2f2f2;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0.5rem;
 }
 
 #carritoProductos > li > :last-child:hover {
-    background-color: #121212;
-    color: #f2f2f2;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
     cursor: pointer;
 }
 
@@ -429,7 +435,7 @@ main {
     justify-content: space-between;
     align-items: center;
 
-    border: 0.1rem solid #f2f2f2;
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0 0 0.5rem 0.5rem;
 }
 
@@ -442,15 +448,15 @@ main {
 */
 #vaciarCarrito {
     padding: 0.5rem 2rem;
-    background-color: #f2f2f2;
-    color: #121212;
-    border: 0.1rem solid #f2f2f2;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0.5rem;
 }
 
 #vaciarCarrito:hover {
-    background-color: #121212;
-    color: #f2f2f2;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
     cursor: pointer;
 }
 
@@ -460,15 +466,15 @@ main {
 #comprarCarrito {
     margin-top: 0.5rem;
     grid-area: comprar;
-    background-color: #f2f2f2;
-    color: #121212;
-    border: 0.1rem solid #f2f2f2;
+    background-color: var(--clr-secondary);
+    color: var(--clr-primary);
+    border: 0.1rem solid var(--clr-secondary);
     border-radius: 0.5rem;
 }
 
 #comprarCarrito:hover {
-    background-color: #121212;
-    color: #f2f2f2;
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
     cursor: pointer;
 }
 
@@ -478,7 +484,7 @@ main {
 footer {
     padding: 0.5rem;
     grid-area: footer;
-    border-top: 0.5rem solid #f2f2f2;
+    border-top: 0.5rem solid var(--clr-secondary);
 
     display: flex;
     justify-content: center;
@@ -545,7 +551,7 @@ footer {
         width: 15rem;
         height: 20rem;
         list-style-type: none;
-        border: 0.1rem solid #f2f2f2;
+        border: 0.1rem solid var(--clr-secondary);
         border-radius: 0.5rem;
     
         display: flex;
