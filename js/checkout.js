@@ -300,6 +300,13 @@ function simuladorHavannaCheckout()
     const CONFIRMAR_BUTTON = document.getElementById("detallesUsuarioConfirmar");
 
     CONFIRMAR_BUTTON.addEventListener("click", () => chequearDetallesUsuario());
+
+    const BACK_TO_TOP = document.getElementById("headerBackToTop");
+    BACK_TO_TOP.addEventListener("click", () => window.scrollTo({top: 0}));
+
+    const GO_TO_CARRITO = document.getElementById("headerGoToCarrito");
+    const CARRITO_CONTAINER = document.getElementById("carritoProductos");
+    GO_TO_CARRITO.addEventListener("click", () => CARRITO_CONTAINER.scrollIntoView());
 };
 
 simuladorHavannaCheckout();

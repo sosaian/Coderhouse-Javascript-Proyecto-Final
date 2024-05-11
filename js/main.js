@@ -530,6 +530,13 @@ function simuladorHavannaGUI()
     const BUSCADOR_BUTTON = document.getElementById('buscadorButton');
 
     BUSCADOR_BUTTON.addEventListener("click", () => chequearBuscador(BUSCADOR_INPUT.value));
+
+    const BACK_TO_TOP = document.getElementById("headerBackToTop");
+    BACK_TO_TOP.addEventListener("click", () => window.scrollTo({top: 0}));
+
+    const GO_TO_CARRITO = document.getElementById("headerGoToCarrito");
+    const CARRITO_CONTAINER = document.getElementById("carritoProductos");
+    GO_TO_CARRITO.addEventListener("click", () => CARRITO_CONTAINER.scrollIntoView());
 };
 
 simuladorHavannaGUI();

@@ -103,6 +103,10 @@ header > div {
     gap: 0;
 }
 
+header > :last-child {
+    display: none;
+}
+
 /*
     MARK: Buscador input
 */
@@ -512,6 +516,8 @@ footer {
     }
 
     header {
+        background-color: var(--clr-primary);
+        position: fixed;
         padding: 1rem;
         flex-direction: column;
         gap: 1rem;
@@ -522,8 +528,29 @@ footer {
         width: 15rem;
     }
 
+    header > :last-child {
+        display: flex;
+        width: 17rem;
+        gap: 1rem;
+    }
+
+    header > :last-child > input {
+        width: 100%;
+        height: 2rlh;
+        background-color: var(--clr-secondary);
+        color: var(--clr-primary);
+        border: 0.1rem solid var(--clr-secondary);
+        border-radius: 0.5rem;
+    }
+
+    header > :last-child > input:active {
+        background-color: var(--clr-primary);
+        color: var(--clr-secondary);
+        cursor: pointer;
+    }
+
     main {
-        margin-top: 2rem;
+        margin-top: calc(8.1rem + 4rlh); /* 2rem + altura de HEADER */
         margin-bottom: 4rem;
         padding: 0.5rem 0;
         display: flex;
