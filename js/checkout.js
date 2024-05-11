@@ -30,7 +30,7 @@ function cargarCarrito()
             LI.id = `carritoProducto${producto.id}`;
 
             const IMG = document.createElement("img");
-            IMG.setAttribute("src", "https://placehold.co/50x75");
+            IMG.setAttribute("src", producto.img.thumbnail);
             LI.appendChild(IMG);
             
             const DIV_NOMBRE = document.createElement("div");
@@ -52,7 +52,7 @@ function cargarCarrito()
                 if (cantidad > 1)
                 {
                     DIV_CANTIDAD.textContent = cantidad - 1;
-                    carrito[indicesSeleccionados.indexOf(producto.id)].cantidad--;
+                    carrito[carrito.findIndex((e) => e.id === producto.id)].cantidad--;
                     calcularTotal();
                     localStorage.setItem("carrito", JSON.stringify(carrito));
                 };
@@ -69,7 +69,7 @@ function cargarCarrito()
             BUTTON_AUMENTAR.addEventListener("click", () => {
                 let cantidad = parseInt(DIV_CANTIDAD.textContent);
                 DIV_CANTIDAD.textContent = cantidad + 1;
-                carrito[indicesSeleccionados.indexOf(producto.id)].cantidad++;
+                carrito[carrito.findIndex((e) => e.id === producto.id)].cantidad++;
                 calcularTotal();
                 localStorage.setItem("carrito", JSON.stringify(carrito));
             });

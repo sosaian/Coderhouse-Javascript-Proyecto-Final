@@ -32,17 +32,6 @@ function cargarListadoProductos(productos)
 
     productos.forEach(producto => {
         const LI = document.createElement("li");
-        
-        const PRODUCTO_ID = productos.indexOf(producto);    //  Uso esta constante auxiliar
-                                                            //  para asegurarme de no volver
-                                                            //  a recorrer todo el array de
-                                                            //  productos (escala mejor).
-        
-        LI.setAttribute("data-id", PRODUCTO_ID);    //  "data-id" lo uso para aprovechar que
-                                                    //  PRODUCTOS es un array de objetos
-                                                    //  indexado. Quizás a futuro use otra
-                                                    //  forma de quizas no dejar expuesta
-                                                    //  la ID del producto...
 
         const IMG = document.createElement("img");
         IMG.setAttribute("src", producto.img.default);
@@ -57,7 +46,7 @@ function cargarListadoProductos(productos)
         AGREGAR_AL_CARRITO.setAttribute("type", "button");
         AGREGAR_AL_CARRITO.setAttribute("value", "Agregar al carrito");
 
-        AGREGAR_AL_CARRITO.addEventListener("click", () => agregarCarrito(PRODUCTO_ID));
+        AGREGAR_AL_CARRITO.addEventListener("click", () => agregarCarrito(producto.id));
         
         LI.appendChild(IMG);
         LI.appendChild(DIV_NOMBRE);
@@ -86,7 +75,7 @@ function cargarCarrito()
             LI.id = `carritoProducto${producto.id}`;
 
             const IMG = document.createElement("img");
-            IMG.setAttribute("src", "https://placehold.co/50x75");
+            IMG.setAttribute("src", producto.img.thumbnail);
             LI.appendChild(IMG);
             
             const DIV_NOMBRE = document.createElement("div");
@@ -108,7 +97,7 @@ function cargarCarrito()
                 if (cantidad > 1)
                 {
                     DIV_CANTIDAD.textContent = cantidad - 1;
-                    carrito[indicesSeleccionados.indexOf(producto.id)].cantidad--;
+                    carrito[carrito.findIndex((e) => e.id === producto.id)].cantidad--;
                     calcularTotal();
                     localStorage.setItem("carrito", JSON.stringify(carrito));
                 };
@@ -125,7 +114,7 @@ function cargarCarrito()
             BUTTON_AUMENTAR.addEventListener("click", () => {
                 let cantidad = parseInt(DIV_CANTIDAD.textContent);
                 DIV_CANTIDAD.textContent = cantidad + 1;
-                carrito[indicesSeleccionados.indexOf(producto.id)].cantidad++;
+                carrito[carrito.findIndex((e) => e.id === producto.id)].cantidad++;
                 calcularTotal();
                 localStorage.setItem("carrito", JSON.stringify(carrito));
             });
@@ -173,8 +162,7 @@ function agregarCarrito(producto_id)
 
     if (indicesSeleccionados.includes(producto_id))
     {  
-        const INDICE = carrito.findIndex((elemento_actual) => elemento_actual.id === producto_id);
-        carrito[INDICE].cantidad += 1;
+        carrito[carrito.findIndex((e) => e.id === producto_id)].cantidad += 1;
 
         const LI_PRODUCTO = document.getElementById(`carritoProducto${producto_id}`);
        
@@ -187,9 +175,8 @@ function agregarCarrito(producto_id)
 
         carrito.push(
             {
-                //  Elijo intencionalmente qué propiedades cargar al carrito
-                //  Para controlar qué información expongo al usuario...
-                id: producto_id,
+                //  Hago una copia del producto traido del JSON, y agrego la propiedad "cantidad"
+                ...productos[productos.findIndex((e) => e.id === producto_id)],
                 cantidad: 1
             }
         );
@@ -198,11 +185,11 @@ function agregarCarrito(producto_id)
         LI.id = `carritoProducto${producto_id}`;
 
         const IMG = document.createElement("img");
-        IMG.setAttribute("src", "https://placehold.co/50x75");
+        IMG.setAttribute("src", carrito[carrito.length - 1].img.thumbnail);
         LI.appendChild(IMG);
         
         const DIV_NOMBRE = document.createElement("div");
-        DIV_NOMBRE.textContent = productos[producto_id].nombre;
+        DIV_NOMBRE.textContent = carrito[carrito.length - 1].nombre;
         LI.appendChild(DIV_NOMBRE);
         
         const DIV_CANTIDAD_LABEL = document.createElement("div");
@@ -216,11 +203,18 @@ function agregarCarrito(producto_id)
         BUTTON_REDUCIR.setAttribute("value","➖");
         BUTTON_REDUCIR.addEventListener("click", () => {
             let cantidad = parseInt(DIV_CANTIDAD.textContent);
-            
+
+            //  Parece tentador guardar el resultado del findIndex() en una constante,
+            //  pero dado que el carrito es dinámico, el índice del elemento puede
+            //  cambiar. Para evitar búsquedas constantes, necesitaría asegurarme de
+            //  que la longitud del carrito siempre sea igual a la de los productos, lo
+            //  cual parece más costoso que simplemente realizar la búsqueda en un array
+            //  probablemente mucho más pequeño en la gran mayoría de casos.
+
             if (cantidad > 1)
             {
                 DIV_CANTIDAD.textContent = cantidad - 1;
-                carrito[indicesSeleccionados.indexOf(producto_id)].cantidad--;
+                carrito[productos.findIndex((e) => e.id === producto_id)].cantidad--;
                 calcularTotal();
                 localStorage.setItem("carrito", JSON.stringify(carrito));
             };
@@ -236,8 +230,11 @@ function agregarCarrito(producto_id)
         BUTTON_AUMENTAR.setAttribute("value","➕");
         BUTTON_AUMENTAR.addEventListener("click", () => {
             let cantidad = parseInt(DIV_CANTIDAD.textContent);
+
+            //  Misma nota que en el caso de BUTTON_REDUCIR para este caso...
+
             DIV_CANTIDAD.textContent = cantidad + 1;
-            carrito[indicesSeleccionados.indexOf(producto_id)].cantidad++;
+            carrito[productos.findIndex((e) => e.id === producto_id)].cantidad++;
             calcularTotal();
             localStorage.setItem("carrito", JSON.stringify(carrito));
         });
