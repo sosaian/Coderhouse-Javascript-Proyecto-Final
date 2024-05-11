@@ -34,7 +34,7 @@ function cargarCarrito()
             LI.appendChild(IMG);
             
             const DIV_NOMBRE = document.createElement("div");
-            DIV_NOMBRE.textContent = productos[producto.id].nombre;
+            DIV_NOMBRE.textContent = producto.nombre;
             LI.appendChild(DIV_NOMBRE);
             
             const DIV_CANTIDAD_LABEL = document.createElement("div");
