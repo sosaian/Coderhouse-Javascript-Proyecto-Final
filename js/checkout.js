@@ -185,9 +185,9 @@ function calcularTotal()
     carrito.forEach((producto) => {
         let subtotal = 0.0;
        
-        let descuento = ((100 - productos[producto.id].descuento) / 100);
+        let descuento = ((100 - producto.descuento) / 100);
 
-        subtotal = productos[producto.id].precio * descuento;
+        subtotal = producto.precio * descuento;
         
         subtotal *= producto.cantidad;   //NOTA: NO contemplo casos del tipo "2da unidad al 50%" en este algoritmo.
 
